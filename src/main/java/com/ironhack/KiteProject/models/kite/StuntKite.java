@@ -1,4 +1,9 @@
 package com.ironhack.KiteProject.models.kite;
 
-public class StuntKite {
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("delta")
+public class StuntKite extends Kite {
 }

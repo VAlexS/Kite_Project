@@ -1,4 +1,9 @@
 package com.ironhack.KiteProject.models.kite;
 
-public class StaticKite {
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("diamond")
+public class StaticKite extends Kite {
 }
