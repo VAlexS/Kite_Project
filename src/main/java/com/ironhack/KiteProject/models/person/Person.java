@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "password")
-public class Person {
+public final class Person {
 
 
     @Id
@@ -29,6 +29,7 @@ public class Person {
     @Column(columnDefinition = "VARCHAR(255)") //me aseguro que me lo genere como varchar, en vez de un enum
     private Rol rol;
 
+    //todo: la password hay que guardarla encriptada en la base de datos
     @NonNull
     private String password;
 
