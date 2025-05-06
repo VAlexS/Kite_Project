@@ -2,6 +2,8 @@
 
 ## Este proyecto consiste en la gestión de una base de datos que consta de cometas y personas.
 
+### Mi tablero de Trello https://trello.com/b/YTSiRLbZ/kite-project
+
 1. Aquí tengo definido el UML y sus relaciones correspondientes 
 
 https://www.plantuml.com/plantuml/uml/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80
