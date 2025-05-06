@@ -30,7 +30,7 @@ public abstract class Kite {
     private LineType lineType;
 
     @NonNull
-    private String location;
+    private String location; //hace referencia al sitio en el que la persona suele volar la cometa
 
     @ManyToOne
     @JoinColumn(name = "owner_dni")

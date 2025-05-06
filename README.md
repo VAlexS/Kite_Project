@@ -13,6 +13,7 @@ abstract class Kite{
 - windLimit: int
 - shape: KiteShape
 - line: LineType
+- location: String
 - owner: Person
   }
 
@@ -51,7 +52,7 @@ Kite "*" o-- "1" Person
 @enduml
 ```
 
-![img.png](img.png)
+![img_6.png](img_6.png)
 
 2. Así es como he creado el proyecto, con estás dependencias
 
