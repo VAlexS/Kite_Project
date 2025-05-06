@@ -36,6 +36,10 @@ public class KiteService {
         return kiteToUpdate;
     }
 
+    public List<Kite> getKitesByLocation(String location){
+        return kiteRepository.findKitesByLocation(location);
+    }
+
 
 
 
