@@ -18,6 +18,7 @@ public class Person {
 
 
     @Id
+    @NonNull
     private String dni;
 
     @NonNull
@@ -34,7 +35,5 @@ public class Person {
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Kite> kites = new ArrayList<>();
-
-
 
 }

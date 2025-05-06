@@ -37,12 +37,4 @@ public abstract class Kite {
     @JsonBackReference //para evitar la redundancia ciclica, ya que la relación es bidireccional
     private Person owner;
 
-
-
-
-
-
-
-
-
 }
