@@ -3,10 +3,7 @@ package com.ironhack.KiteProject.models.person;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ironhack.KiteProject.models.kite.Kite;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +13,9 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "password")
 public class Person {
+
 
     @Id
     private String dni;
@@ -26,7 +25,7 @@ public class Person {
 
     @Enumerated(EnumType.STRING)
     @NonNull
-    @Column(columnDefinition = "VARCHAR(255)")
+    @Column(columnDefinition = "VARCHAR(255)") //me aseguro que me lo genere como varchar, en vez de un enum
     private Rol rol;
 
     @NonNull

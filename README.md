@@ -64,7 +64,7 @@ Kite "*" o-- "1" Person
 Estás son las tablas resultantes:
 
  * Por un lado, tenemos la tabla que hace referencia a las cometas, lo que está resaltado en amarillo hace referencia a la columna
-   determinante, es decir, la que nos va a indicar el tipo de cometa
+   determinante, es decir, la que nos va a indicar el tipo de cometa. Por lo que se intuye, 
 
      ![img_5.png](img_5.png)
 
