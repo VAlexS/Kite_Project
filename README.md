@@ -74,7 +74,13 @@ Estás son las tablas resultantes:
 
      ![img_4.png](img_4.png)
 
+Estas son las relaciones
+
+![img_8.png](img_8.png)
+
 Posteriormente, he de crear manualmente una tercera tabla que haga referencia a los roles.
+
+
 
 
 
