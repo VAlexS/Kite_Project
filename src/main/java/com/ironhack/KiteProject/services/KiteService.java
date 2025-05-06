@@ -10,7 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class KiteService {
+public final class KiteService {
 
     @Autowired
     private KiteRepository kiteRepository;
