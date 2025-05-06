@@ -52,3 +52,7 @@ Kite "*" o-- "1" Person
 ```
 
 ![img.png](img.png)
+
+2. Así es como he creado el proyecto, con estás dependencias
+
+![img_1.png](img_1.png)

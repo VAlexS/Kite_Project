@@ -1,4 +1,12 @@
-package com.ironhack.KiteProject.models;
+package com.ironhack.KiteProject.models.kite;
 
-public class Kite {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "kites")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "shape")
+public abstract class Kite {
+
+
 }
