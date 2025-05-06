@@ -29,10 +29,14 @@ public abstract class Kite {
     @Column(columnDefinition = "VARCHAR(255)") //me aseguro que me lo genere como varchar, en vez de un enum
     private LineType lineType;
 
+    @NonNull
+    private String location;
+
     @ManyToOne
     @JoinColumn(name = "owner_dni")
     @JsonBackReference //para evitar la redundancia ciclica, ya que la relación es bidireccional
     private Person owner;
+
 
 
 
