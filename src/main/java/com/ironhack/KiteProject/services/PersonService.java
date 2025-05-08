@@ -4,6 +4,7 @@ import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -45,6 +46,14 @@ public final class PersonService {
 
     public Optional<Person> getByUserName(String username){
         return personRepository.findByUsername(username);
+    }
+
+    public boolean passwordIsValid(Person person, String password) {
+        return passwordEncoder.matches(password, person.getPassword()); // compara el password hardcodeado "1234" con el encriptado "$2a$....."
+    }
+
+    public void deleteUser(Person person){
+        personRepository.delete(person);
     }
 
 
