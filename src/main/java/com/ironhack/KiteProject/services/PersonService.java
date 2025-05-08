@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public final class PersonService {
@@ -20,7 +19,9 @@ public final class PersonService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Person savePerson(Person person){
+
+    public Person createPerson(Person person){
+        person.setPassword(passwordEncoder.encode(person.getPassword()));
         return personRepository.save(person);
     }
 
@@ -39,14 +40,6 @@ public final class PersonService {
         person.setDni(personToUpdate.getDni());
 
         return person;
-    }
-
-    public boolean passwordIsValid(Person person, String password) {
-        return passwordEncoder.matches(password, person.getPassword()); // compara el password hardcodeado  con el encriptado
-    }
-
-    public Optional<Person> getByUserName(String username){
-        return personRepository.findByUsername(username);
     }
 
 
