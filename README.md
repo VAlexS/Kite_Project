@@ -69,24 +69,14 @@ Kite "*" o-- "1" Person
 
 ```spring.jpa.hibernate.ddl-auto=update```
 
-Estás son las tablas resultantes:
+Estás son las tablas resultantes, cuyas relaciones son estas, como se puede observar, el shape de la tabla kites es una columna
+determinante, también llamada como discriminator value, ya que esta va a determinar el tipo de cometa que tiene la persona:
 
- * Por un lado, tenemos la tabla que hace referencia a las cometas, lo que está resaltado en amarillo hace referencia a la columna
-   determinante, es decir, la que nos va a indicar el tipo de cometa. Por lo que se intuye, 
+![img_10.png](img_10.png)
 
-     ![img_7.png](img_7.png)
+![img_11.png](img_11.png)
 
-    
- * Por otro lado, tenemos la tabla que hace referencia a las personas
-
-     ![img_4.png](img_4.png)
-
-Estas son las relaciones
-
-![img_8.png](img_8.png)
-
-Posteriormente, he de crear manualmente una tercera tabla que haga referencia a los roles.
-
+![img_12.png](img_12.png)
 
 
 

@@ -12,7 +12,7 @@ import java.util.List;
 import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
-@Table(name = "person")
+@Table(name = "persons")
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
