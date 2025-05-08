@@ -18,7 +18,7 @@ public final class Role {
     @Enumerated(EnumType.STRING)
     @NonNull
     @Column(columnDefinition = "VARCHAR(255)") //me aseguro que me lo genere como varchar, en vez de un enum
-    private ERole rol;
+    private ERole name;
 
 
 }
