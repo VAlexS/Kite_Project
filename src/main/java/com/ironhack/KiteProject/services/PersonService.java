@@ -4,16 +4,21 @@ import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public final class PersonService {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public Person createPerson(Person person){
         return personRepository.save(person);
@@ -34,6 +39,14 @@ public final class PersonService {
         person.setDni(personToUpdate.getDni());
 
         return person;
+    }
+
+    public boolean passwordIsValid(Person person, String password) {
+        return passwordEncoder.matches(password, person.getPassword()); // compara el password hardcodeado  con el encriptado
+    }
+
+    public Optional<Person> getByUserName(String username){
+        return personRepository.findByUsername(username);
     }
 
 
