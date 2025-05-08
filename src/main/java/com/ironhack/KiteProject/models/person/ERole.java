@@ -1,5 +1,5 @@
 package com.ironhack.KiteProject.models.person;
 
-public enum Rol {
+public enum ERole {
     ADMIN, USER
 }

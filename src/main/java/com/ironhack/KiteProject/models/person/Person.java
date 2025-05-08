@@ -24,10 +24,6 @@ public final class Person {
     @NonNull
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @NonNull
-    @Column(columnDefinition = "VARCHAR(255)") //me aseguro que me lo genere como varchar, en vez de un enum
-    private Rol rol;
 
     //todo: la password hay que guardarla encriptada en la base de datos
     @NonNull

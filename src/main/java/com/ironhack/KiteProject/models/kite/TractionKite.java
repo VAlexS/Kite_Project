@@ -6,7 +6,7 @@ import lombok.NonNull;
 
 @Entity
 @DiscriminatorValue("parafoil")
-public class TractionKite extends Kite {
+public final class TractionKite extends Kite {
 
     public TractionKite(@NonNull int windLimit, @NonNull LineType lineType, @NonNull String location) {
         super(windLimit, lineType, location);
