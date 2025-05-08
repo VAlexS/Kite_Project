@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public final class PersonService {
@@ -40,6 +41,10 @@ public final class PersonService {
         person.setDni(personToUpdate.getDni());
 
         return person;
+    }
+
+    public Optional<Person> getByUserName(String username){
+        return personRepository.findByUsername(username);
     }
 
 

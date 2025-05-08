@@ -29,6 +29,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Person user) {
+        //todo: arreglar este error
         Optional<Person> optionalUser = personService.getByUserName(user.getUsername());
 
         // miramos que el user existe
