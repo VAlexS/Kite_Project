@@ -20,7 +20,7 @@ public final class PersonService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Person createPerson(Person person){
+    public Person savePerson(Person person){
         return personRepository.save(person);
     }
 

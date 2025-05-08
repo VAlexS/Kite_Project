@@ -72,11 +72,11 @@ Kite "*" o-- "1" Person
 Estás son las tablas resultantes, cuyas relaciones son estas, como se puede observar, el shape de la tabla kites es una columna
 determinante, también llamada como discriminator value, ya que esta va a determinar el tipo de cometa que tiene la persona:
 
-![img_13.png](img_13.png)
+![img_16.png](img_16.png)
 
-![img_14.png](img_14.png)
+![img_17.png](img_17.png)
 
-![img_15.png](img_15.png)
+![img_18.png](img_18.png)
 
 Como se puede observar en las imágenes, en la tabla kite, hay una columna especial llamada shape, ya que en Java, al haber una clase
 madre (Kite) y varias clases hijas, que hacen referencia a los distintos tipos de cometas. Como aplicamos herencia, he escogido la estrategia
