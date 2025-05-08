@@ -28,7 +28,7 @@ public final class Person {
     private String username;
 
 
-    //todo: la password hay que guardarla encriptada en la base de datos
+
     @NonNull
     private String password;
 

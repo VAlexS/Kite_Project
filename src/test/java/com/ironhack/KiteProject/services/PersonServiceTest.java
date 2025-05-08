@@ -22,19 +22,28 @@ class PersonServiceTest {
 
     @BeforeEach
     public void setUp() {
-        person = new Person();
-        person.setUsername("hombre_de_la_rae");
-        person.setPassword("CometaOrao2025");
-        System.out.println("El usuario inicial es: " + person);
-
+        person = new Person("06593826W", "hombre_de_la_rae", "CometaOrao2025");
         personService.savePerson(person);
+    }
+
+    @Test
+    @DisplayName("Genera un token correctamente")
+    void generateToken() {
+        String token = jwtService.generateToken("John", "[ROLE_ADMIN]");
+
+        System.out.println("======================================");
+        System.out.println("ESTO ES EL TOKEN: " + token);
+        System.out.println("======================================");
     }
 
     @Test
     @DisplayName("La encriptación de passwords es correcta")
     public void passwordEncryption() {
-        assertTrue(person.getPassword().startsWith("$2a$")); // todas las strings encriptadas con bcrypt usando el algoritmo que estamos usando deberían empezar así
+        // todas las strings encriptadas con bcrypt usando el algoritmo que estamos usando deberían empezar así
+        assertTrue(person.getPassword().startsWith("$2a$"));
+        System.out.println("======================================");
         System.out.println("esta es la person final: " + person);
+        System.out.println("======================================");
     }
 
 
