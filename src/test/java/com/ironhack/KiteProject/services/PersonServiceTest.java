@@ -23,7 +23,7 @@ class PersonServiceTest {
     @BeforeEach
     public void setUp() {
         person = new Person("06593826W", "hombre_de_la_rae", "CometaOrao2025");
-        personService.savePerson(person);
+        personService.createPerson(person);
     }
 
     @Test
