@@ -45,8 +45,13 @@ enum LineType {
 SINGLE_LINE, DUAL_LINE
 }
 
-enum Role {
+enum ERole {
 ADMIN, USER
+}
+
+class Role {
+- id: int
+- rol: ERole
 }
 
 Kite "*" o-- "1" Person
@@ -54,7 +59,7 @@ Kite "*" o-- "1" Person
 @enduml
 ```
 
-![img_6.png](img_6.png)
+![img_9.png](img_9.png)
 
 2. Así es como he creado el proyecto, con estás dependencias
 

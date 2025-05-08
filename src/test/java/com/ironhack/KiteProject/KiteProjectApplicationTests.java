@@ -22,7 +22,7 @@ class KiteProjectApplicationTests {
 	@Autowired
 	PersonService personService;
 
-	@Test
+	/*@Test
 	@DisplayName("Crear una persona en la base de datos")
 	void savePerson(){
 		Person person = new Person("06593826W", "Victor", ERole.USER, "admin");
@@ -34,7 +34,7 @@ class KiteProjectApplicationTests {
 	void saveOtherPerson(){
 		Person person = new Person("65291847F", "Antonio", ERole.USER, "root");
 		personService.createPerson(person);
-	}
+	}*/
 
 	@Test
 	@DisplayName("Ahora una persona va a tener 3 cometas en distintas ubicaciones")

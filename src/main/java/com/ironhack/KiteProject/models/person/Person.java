@@ -6,7 +6,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
 @Table(name = "person")
@@ -32,5 +35,8 @@ public final class Person {
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Kite> kites = new ArrayList<>();
+
+    @ManyToMany(fetch = EAGER) // to load roles when loading the user
+    private Collection<Role> roles = new ArrayList<>();
 
 }
