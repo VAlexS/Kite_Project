@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class PersonService {
+public final class PersonService {
 
     @Autowired
     private PersonRepository personRepository;
