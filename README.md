@@ -78,7 +78,12 @@ determinante, también llamada como discriminator value, ya que esta va a determ
 
 ![img_12.png](img_12.png)
 
+4. Para que funcione la autenticación, he añadido esta dependencia en el fichero pom.xml
 
-
-
-
+```
+<dependency>
+	<groupId>com.auth0</groupId>
+	<artifactId>java-jwt</artifactId>
+	<version>3.18.1</version>
+</dependency>
+```
