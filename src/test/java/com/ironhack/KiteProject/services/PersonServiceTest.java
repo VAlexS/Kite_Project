@@ -29,7 +29,7 @@ class PersonServiceTest {
     @Test
     @DisplayName("Genera un token correctamente")
     void generateToken() {
-        String token = jwtService.generateToken("John", "[ROLE_ADMIN]");
+        String token = jwtService.generateToken("Víctor", "[ROLE_USER]");
 
         System.out.println("======================================");
         System.out.println("ESTO ES EL TOKEN: " + token);
