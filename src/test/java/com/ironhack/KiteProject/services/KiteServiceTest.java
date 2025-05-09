@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,6 +57,25 @@ class KiteServiceTest {
         kiteService.saveKite(kite1);
         kiteService.saveKite(kite2);
         kiteService.saveKite(kite3);
+    }
+
+    @Test
+    @DisplayName("Busco las cometas que tiene hombre_de_la_rae")
+    void findKiteByOwner(){
+        Optional<Person> foundPerson = personService.getByUserName("hombre_de_la_rae");
+
+        assertTrue(foundPerson.isPresent());
+
+        Person owner = foundPerson.get();
+
+        List<Kite> hisKites = kiteService.getKitesByOwner(owner);
+
+        System.out.println("===========================");
+        System.out.println("Estas son las cometas que tiene "+owner.getUsername());
+        System.out.println(hisKites);
+        System.out.println("==========================");
+
+
     }
 
 }
