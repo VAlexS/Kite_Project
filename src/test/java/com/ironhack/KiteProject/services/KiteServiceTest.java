@@ -117,6 +117,51 @@ class KiteServiceTest {
 
     }
 
+    @Test
+    @DisplayName("Crear una cometa con un propietario que no existe en la base de datos")
+    void saveKiteWithUnexistingOwner(){
+        Kite kite = new StuntKite();
+
+        Person person = new Person("adrian", "key");
+
+        kite.setWindRequired(18);
+        kite.setLineType(LineType.DUAL_LINE);
+        kite.setLocation("Alcala de Henares, (Madrid)");
+        kite.setOwner(person);
+
+        assertThrows(ResponseStatusException.class, () -> kiteService.saveKite(kite));
+    }
+
+    @Test
+    @DisplayName("Crear una cometa sin dueño asignado")
+    void saveKiteWithoutOwner(){
+        Kite kite = new StuntKite();
+        kite.setWindRequired(20);
+        kite.setLocation("Burgos");
+        kite.setLineType(LineType.DUAL_LINE);
+
+        kiteService.saveKite(kite);
+    }
+
+
+    @Test
+    @DisplayName("Asignar a una persona una cometa ya existente")
+    void aPersonAdquireKite(){
+        Optional<Person> foundPerson = personService.getByUserName("auronplay");
+
+        assertTrue(foundPerson.isPresent());
+
+        Person person = foundPerson.get();
+
+        Kite kite = kiteService.getKiteById(4);
+
+        assertNull(kite.getOwner());
+
+        kite.setOwner(person);
+
+        kiteService.updateKite(4, kite);
+    }
+
 
 
 }

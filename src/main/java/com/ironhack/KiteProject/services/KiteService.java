@@ -48,12 +48,15 @@ public final class KiteService {
     }
 
     public Kite updateKite(int id, Kite kite){
-        var kiteToUpdate = kiteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        kite.setId(kiteToUpdate.getId());
-        kite.setOwner(kiteToUpdate.getOwner());
 
-        return kiteToUpdate;
+        Kite kiteToUpdate = kiteRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+
+        kiteToUpdate.setOwner(kite.getOwner());
+
+        return kiteRepository.save(kiteToUpdate);
     }
 
     public List<Kite> getKitesByLocation(String location){

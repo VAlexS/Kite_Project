@@ -22,20 +22,20 @@ class PersonServiceTest {
     Person person;
 
 
-    /*@BeforeEach
+    @BeforeEach
     public void setUp() {
-        person = new Person("adrian", "abcd1234");
+        person = new Person("auronplay", "abcd1234");
         System.out.println("=================");
         System.out.println("Persona inicial: ");
         System.out.println(person);
         System.out.println("=================");
         personService.savePerson(person);
-    }*/
+    }
 
     @Test
     @DisplayName("Genera un token correctamente")
     void generateToken() {
-        String token = jwtService.generateToken("adrian", "[ROLE_USER]");
+        String token = jwtService.generateToken("auronplay", "[ROLE_USER]");
 
         System.out.println("======================================");
         System.out.println("ESTO ES EL TOKEN: " + token);
@@ -57,7 +57,7 @@ class PersonServiceTest {
     @Test
     @DisplayName("Crear un usuario que ya existe en la base de datos")
     void duplicateUser(){
-        person = new Person("adrian", "admin");
+        person = new Person("hombre_de_la_rae", "admin");
 
         assertThrows(ResponseStatusException.class, () -> personService.savePerson(person));
     }

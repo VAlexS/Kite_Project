@@ -38,10 +38,6 @@ public final class PersonService {
         return personRepository.findAll();
     }
 
-    public Person getPersonByDni(String dni){
-        //no hace falta definir un método para buscar por dni, ya que en el modelo, he indicado que el dni juega el papel del ID
-        return personRepository.findById(dni).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    }
 
     public Person updatePerson(String username, Person person){
         var personToUpdate = personRepository.findById(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
