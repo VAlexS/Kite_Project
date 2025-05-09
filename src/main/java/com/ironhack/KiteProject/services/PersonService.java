@@ -59,7 +59,7 @@ public final class PersonService {
         return passwordEncoder.matches(password, person.getPassword()); // compara el password hardcodeado "1234" con el encriptado "$2a$....."
     }
 
-    public void deleteUser(Person person){
+    public void deletePerson(Person person){
         personRepository.delete(person);
     }
 
