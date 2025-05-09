@@ -11,6 +11,7 @@ import lombok.ToString;
 @DiscriminatorValue("delta")
 @Data
 @NoArgsConstructor
+@ToString(callSuper = true)
 public final class StuntKite extends Kite {
 
 }

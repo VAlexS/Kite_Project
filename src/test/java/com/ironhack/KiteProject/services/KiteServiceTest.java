@@ -28,9 +28,9 @@ class KiteServiceTest {
     @DisplayName("Asigno 3 cometas acrobáticas para hombre_de_la_rae")
     void setUpStuntKite(){
 
-        Kite kite1;
+        Kite kite1, kite2, kite3;
 
-        Optional<Person> personToAssign = personService.getByUserName("adrian");
+        Optional<Person> personToAssign = personService.getByUserName("hombre_de_la_rae");
 
         assertTrue(personToAssign.isPresent());
 
@@ -44,6 +44,17 @@ class KiteServiceTest {
         kite1.setLocation("Madrid");
         kite1.setOwner(ownerKite);
 
+        kite2 = new StuntKite();
+        kite2.setWindRequired(24);
+        kite2.setLineType(LineType.DUAL_LINE);
+        kite2.setLocation("Caraquiz, Uceda (Guadalajara)");
+        kite2.setOwner(ownerKite);
+
+        kite3 = new StuntKite();
+        kite3.setWindRequired(24);
+        kite3.setLineType(LineType.DUAL_LINE);
+        kite3.setLocation("Torrevieja (Alicante)");
+        kite3.setOwner(ownerKite);
 
 
 
@@ -51,18 +62,13 @@ class KiteServiceTest {
         System.out.println("===========================");
         System.out.println("Estas con las cometas que vas a añadir");
         System.out.println("Cometa 1 = "+kite1);
+        System.out.println("Cometa 2 = "+kite2);
+        System.out.println("Cometa 3 = "+kite3);
         System.out.println("===========================");
 
         kiteService.saveKite(kite1);
-
-        List<Kite> hisKites = kiteService.getKitesByOwner("adrian");
-        System.out.println("Clase del primer objeto recuperado: " + hisKites.get(0).getClass().getName());
-
-        Kite kite = hisKites.get(0);
-        System.out.println("ID: " + kite.getId());
-        System.out.println("Ubicación: " + kite.getLocation());
-        System.out.println("Tipo de línea: " + kite.getLineType());
-        System.out.println("Owner: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
+        kiteService.saveKite(kite2);
+        kiteService.saveKite(kite3);
 
     }
 
@@ -80,9 +86,11 @@ class KiteServiceTest {
 
         System.out.println("=======================");
         System.out.println("Las cometas de "+owner.getUsername());
-        for (Kite kite : hisKites) {
-            System.out.println("Cometa encontrada - ID: " + kite.getId() + ", Ubicación: " + kite.getLocation() + ", Tipo de línea: " + kite.getLineType() + ", Dueño: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
-        }
+        /*for (Kite kite : hisKites) {
+            System.out.println("Cometa encontrada - ID: " + kite.getId() + ", Ubicación: " + kite.getLocation() + ", Tipo de línea: " + kite.getLineType()
+                    + ", Dueño: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
+        }*/
+        System.out.println(hisKites);
         System.out.println("==============================");
 
     }

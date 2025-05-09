@@ -12,7 +12,7 @@ import lombok.*;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
-//@ToString(exclude = "owner")
+@ToString(exclude = "owner")
 public abstract class Kite {
 
     @Id
