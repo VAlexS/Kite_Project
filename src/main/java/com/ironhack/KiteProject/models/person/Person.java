@@ -17,26 +17,27 @@ import static jakarta.persistence.FetchType.EAGER;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "password")
-public final class Person {
-
+public class Person {
 
     @Id
     @NonNull
-    private String dni;
+    private String username; //el username es unico
 
-    @NonNull
-    private String username;
 
 
 
     @NonNull
     private String password;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "owner", fetch = EAGER)
     @JsonManagedReference
     private List<Kite> kites = new ArrayList<>();
 
+
     @ManyToMany(fetch = EAGER) // to load roles when loading the user
     private Collection<Role> roles = new ArrayList<>();
+
+
 
 }
