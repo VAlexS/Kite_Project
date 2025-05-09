@@ -86,10 +86,6 @@ class KiteServiceTest {
 
         System.out.println("=======================");
         System.out.println("Las cometas de "+owner.getUsername());
-        /*for (Kite kite : hisKites) {
-            System.out.println("Cometa encontrada - ID: " + kite.getId() + ", Ubicación: " + kite.getLocation() + ", Tipo de línea: " + kite.getLineType()
-                    + ", Dueño: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
-        }*/
         System.out.println(hisKites);
         System.out.println("==============================");
 
