@@ -19,9 +19,9 @@ public abstract class Kite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "wind_limit")
+    @Column(name = "min_wind_required")
     @NonNull
-    private int windLimit;
+    private int minWindRequired;
 
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +30,7 @@ public abstract class Kite {
     private LineType lineType;
 
     @ManyToOne
-    @JoinColumn(name = "owner_dni")
+    @JoinColumn(name = "owner")
     @JsonBackReference //para evitar la redundancia ciclica, ya que la relación es bidireccional
     private Person owner;
 

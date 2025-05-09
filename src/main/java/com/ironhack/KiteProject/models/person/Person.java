@@ -18,10 +18,8 @@ public class Person {
 
 
     @Id
-    private String dni;
-
     @NonNull
-    private String name;
+    private String username; //el username es unico
 
     @Enumerated(EnumType.STRING)
     @NonNull
