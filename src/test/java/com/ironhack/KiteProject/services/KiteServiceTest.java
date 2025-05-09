@@ -56,14 +56,18 @@ class KiteServiceTest {
         kiteService.saveKite(kite1);
 
         List<Kite> hisKites = kiteService.getKitesByOwner("adrian");
-        System.out.println("Cometas recuperadas: " + hisKites.size());
+        System.out.println("Clase del primer objeto recuperado: " + hisKites.get(0).getClass().getName());
 
-        hisKites.forEach(k -> System.out.println("Cometa encontrada: " + k));
+        Kite kite = hisKites.get(0);
+        System.out.println("ID: " + kite.getId());
+        System.out.println("Ubicación: " + kite.getLocation());
+        System.out.println("Tipo de línea: " + kite.getLineType());
+        System.out.println("Owner: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
 
     }
 
     //todo: investigar por qué falla este test
-    /*@Test
+    @Test
     @DisplayName("Busco las cometas que tiene hombre_de_la_rae")
     void findKiteByOwner(){
         Optional<Person> foundPerson = personService.getByUserName("hombre_de_la_rae");
@@ -74,12 +78,14 @@ class KiteServiceTest {
 
         List<Kite> hisKites = kiteService.getKitesByOwner(owner.getUsername());
 
-        System.out.println("===========================");
-        System.out.println("Estas son las cometas que tiene "+owner.getUsername());
-        System.out.println(hisKites);
-        System.out.println("==========================");
+        System.out.println("=======================");
+        System.out.println("Las cometas de "+owner.getUsername());
+        for (Kite kite : hisKites) {
+            System.out.println("Cometa encontrada - ID: " + kite.getId() + ", Ubicación: " + kite.getLocation() + ", Tipo de línea: " + kite.getLineType() + ", Dueño: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
+        }
+        System.out.println("==============================");
 
-    }*/
+    }
 
     @Test
     @DisplayName("Busco todas las cometas que hay en madrid")
@@ -87,9 +93,13 @@ class KiteServiceTest {
         List<Kite> kitesMadrid = kiteService.getKitesByLocation("Madrid");
 
         System.out.println("=======================");
-        System.out.println("Las cometas que hay en Madrid son: ");
-        System.out.println(kitesMadrid);
+        System.out.println("Las cometas en Madrid");
+        for (Kite kite : kitesMadrid) {
+            System.out.println("Cometa encontrada - ID: " + kite.getId() + ", Ubicación: " + kite.getLocation() + ", Tipo de línea: " + kite.getLineType() + ", Dueño: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
+        }
         System.out.println("==============================");
     }
+
+
 
 }

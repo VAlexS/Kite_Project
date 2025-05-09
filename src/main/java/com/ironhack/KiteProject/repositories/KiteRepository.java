@@ -13,12 +13,7 @@ public interface KiteRepository extends JpaRepository<Kite, Integer> {
     List<Kite> findKitesByLocation(String location);
 
 
-    /*@Transactional
-    //@Query("SELECT k FROM Kite k WHERE k.owner.username = :ownerName")
-    @Query("SELECT k FROM Kite k JOIN FETCH k.owner WHERE k.owner.username = :ownerName")
-    List<Kite> findKitesByOwner(@Param("ownerName") String ownerName);*/
-
-    @Query("SELECT k FROM Kite k JOIN FETCH k.owner WHERE k.owner.username = :ownerName")
+    @Query(value = "SELECT * FROM kites WHERE owner = :ownerName", nativeQuery = true)
     List<Kite> findKitesByOwner(@Param("ownerName") String ownerName);
 
 
