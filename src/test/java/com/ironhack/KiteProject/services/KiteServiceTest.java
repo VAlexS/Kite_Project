@@ -162,6 +162,23 @@ class KiteServiceTest {
         kiteService.updateKite(4, kite);
     }
 
+    @Test
+    @DisplayName("Asigno una cometa con dueño a otra persona, debe de lanzar un error")
+    void aPersonAdquireUnexistingKite(){
+        Kite kite = kiteService.getKiteById(1);
+
+        Optional<Person> foundPerson = personService.getByUserName("auronplay");
+
+        assertTrue(foundPerson.isPresent());
+
+        kite.setOwner(foundPerson.get());
+
+        assertThrows(ResponseStatusException.class, () -> kiteService.updateKite(kite.getId(), kite));
+
+
+
+    }
+
 
 
 }

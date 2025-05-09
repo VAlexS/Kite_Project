@@ -53,6 +53,8 @@ public final class KiteService {
         Kite kiteToUpdate = kiteRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
+        if (kiteToUpdate.getOwner() != null)
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
 
         kiteToUpdate.setOwner(kite.getOwner());
 
