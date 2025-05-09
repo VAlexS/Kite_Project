@@ -23,14 +23,18 @@ class PersonServiceTest {
     //todo: probar a hacerlo con un scanner
     @BeforeEach
     public void setUp() {
-        person = new Person("hombre_de_la_rae", "CometaOrao2025");
+        person = new Person("adrian", "abcd1234");
+        System.out.println("=================");
+        System.out.println("Persona inicial: ");
+        System.out.println(person);
+        System.out.println("=================");
         personService.createPerson(person);
     }
 
     @Test
     @DisplayName("Genera un token correctamente")
     void generateToken() {
-        String token = jwtService.generateToken("Víctor", "[ROLE_USER]");
+        String token = jwtService.generateToken("adrian", "[ROLE_USER]");
 
         System.out.println("======================================");
         System.out.println("ESTO ES EL TOKEN: " + token);

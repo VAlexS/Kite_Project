@@ -6,6 +6,7 @@ import com.ironhack.KiteProject.repositories.KiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -41,8 +42,8 @@ public final class KiteService {
         return kiteRepository.findKitesByLocation(location);
     }
 
-    public List<Kite> getKitesByOwner(Person owner){
-        return kiteRepository.findKitesByOwner(owner);
+    public List<Kite> getKitesByOwner(String ownerName) {
+        return kiteRepository.findKitesByOwner(ownerName);
     }
 
 
