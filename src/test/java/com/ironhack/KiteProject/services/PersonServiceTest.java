@@ -23,7 +23,7 @@ class PersonServiceTest {
     //todo: probar a hacerlo con un scanner
     @BeforeEach
     public void setUp() {
-        person = new Person("06593826W", "hombre_de_la_rae", "CometaOrao2025");
+        person = new Person("hombre_de_la_rae", "CometaOrao2025");
         personService.createPerson(person);
     }
 

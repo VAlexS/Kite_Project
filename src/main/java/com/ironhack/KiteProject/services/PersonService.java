@@ -36,16 +36,16 @@ public final class PersonService {
         return personRepository.findById(dni).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public Person updatePerson(String dni, Person person){
-        var personToUpdate = personRepository.findById(dni).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public Person updatePerson(String username, Person person){
+        var personToUpdate = personRepository.findById(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        person.setDni(personToUpdate.getDni());
+        person.setUsername(personToUpdate.getUsername());
 
         return person;
     }
 
     public Optional<Person> getByUserName(String username){
-        return personRepository.findByUsername(username);
+        return personRepository.findById(username);
     }
 
     public boolean passwordIsValid(Person person, String password) {
