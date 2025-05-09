@@ -19,7 +19,7 @@ public final class KiteService {
 
     public Kite saveKite(Kite kite){
 
-        if (kite.getWindRequired() < 18 || kite.getWindRequired() > 40)
+        if (kite.getWindRequired() < 14 || kite.getWindRequired() > 40)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 
         return kiteRepository.save(kite);

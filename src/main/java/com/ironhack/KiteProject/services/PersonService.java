@@ -22,7 +22,7 @@ public final class PersonService {
 
 
 
-    public Person createPerson(Person person){
+    public Person savePerson(Person person){
 
         //valido que el username no se repita
         Optional<Person> personToCheck = personRepository.findById(person.getUsername());

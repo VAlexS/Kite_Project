@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -102,6 +103,18 @@ class KiteServiceTest {
             System.out.println("Cometa encontrada - ID: " + kite.getId() + ", Ubicación: " + kite.getLocation() + ", Tipo de línea: " + kite.getLineType() + ", Dueño: " + (kite.getOwner() != null ? kite.getOwner().getUsername() : "Sin dueño"));
         }
         System.out.println("==============================");
+    }
+
+    @Test
+    @DisplayName("Crear una cometa con un viento requerido fuera de rango")
+    void setUpKiteWithImpossibleWindRequired(){
+        Kite kite = new StuntKite();
+        kite.setWindRequired(8);
+        kite.setLineType(LineType.DUAL_LINE);
+        kite.setLocation("Segovia");
+
+        assertThrows(ResponseStatusException.class, () -> kiteService.saveKite(kite));
+
     }
 
 

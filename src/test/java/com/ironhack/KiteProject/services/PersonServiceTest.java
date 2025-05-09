@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,16 +21,16 @@ class PersonServiceTest {
 
     Person person;
 
-    //todo: probar a hacerlo con un scanner
-    @BeforeEach
+
+    /*@BeforeEach
     public void setUp() {
         person = new Person("adrian", "abcd1234");
         System.out.println("=================");
         System.out.println("Persona inicial: ");
         System.out.println(person);
         System.out.println("=================");
-        personService.createPerson(person);
-    }
+        personService.savePerson(person);
+    }*/
 
     @Test
     @DisplayName("Genera un token correctamente")
@@ -49,6 +50,16 @@ class PersonServiceTest {
         System.out.println("======================================");
         System.out.println("esta es la person final: " + person);
         System.out.println("======================================");
+    }
+
+
+    //para probar este test, comentar el método que tiene el beforeEach para no añadir el usuario 2 veces
+    @Test
+    @DisplayName("Crear un usuario que ya existe en la base de datos")
+    void duplicateUser(){
+        person = new Person("adrian", "admin");
+
+        assertThrows(ResponseStatusException.class, () -> personService.savePerson(person));
     }
 
 
