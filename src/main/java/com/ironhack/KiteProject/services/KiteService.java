@@ -1,6 +1,7 @@
 package com.ironhack.KiteProject.services;
 
 import com.ironhack.KiteProject.models.kite.Kite;
+import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.repositories.KiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,10 @@ public final class KiteService {
 
     public List<Kite> getKitesByLocation(String location){
         return kiteRepository.findKitesByLocation(location);
+    }
+
+    public List<Kite> getKitesByOwner(Person owner){
+        return kiteRepository.findKitesByOwner(owner);
     }
 
 
