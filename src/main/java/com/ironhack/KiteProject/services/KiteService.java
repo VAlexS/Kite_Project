@@ -18,6 +18,10 @@ public final class KiteService {
     private KiteRepository kiteRepository;
 
     public Kite saveKite(Kite kite){
+
+        if (kite.getWindRequired() < 18 || kite.getWindRequired() > 40)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
         return kiteRepository.save(kite);
     }
 
@@ -46,7 +50,12 @@ public final class KiteService {
         return kiteRepository.findKitesByOwner(ownerName);
     }
 
+    public void deleteKite(Kite kite){
 
+        var kiteToDelete = kiteRepository.findById(kite.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        kiteRepository.delete(kiteToDelete);
+    }
 
 
 

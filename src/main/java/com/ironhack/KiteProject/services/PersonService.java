@@ -4,7 +4,6 @@ import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,8 +21,15 @@ public final class PersonService {
     private PasswordEncoder passwordEncoder;
 
 
-    //todo: asegurarse que NO se repita el username
+
     public Person createPerson(Person person){
+
+        //valido que el username no se repita
+        Optional<Person> personToCheck = personRepository.findById(person.getUsername());
+
+        if (personToCheck.isPresent())
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         return personRepository.save(person);
     }
