@@ -15,7 +15,7 @@ public final class KiteService {
     @Autowired
     private KiteRepository kiteRepository;
 
-    public Kite createKite(Kite kite){
+    public Kite saveKite(Kite kite){
         return kiteRepository.save(kite);
     }
 
