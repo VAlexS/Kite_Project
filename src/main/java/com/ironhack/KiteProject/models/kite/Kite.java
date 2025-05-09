@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "kite")
+@Table(name = "kites")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "shape", discriminatorType = DiscriminatorType.STRING)
 @Data
@@ -19,9 +19,9 @@ public abstract class Kite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "min_wind_required")
+    @Column(name = "wind_required")
     @NonNull
-    private int minWindRequired;
+    private int windRequired;
 
 
     @Enumerated(EnumType.STRING)
