@@ -9,7 +9,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Table(name = "roles")
-public final class Role {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +19,4 @@ public final class Role {
     @NonNull
     @Column(columnDefinition = "VARCHAR(255)") //me aseguro que me lo genere como varchar, en vez de un enum
     private ERole name;
-
-
 }
