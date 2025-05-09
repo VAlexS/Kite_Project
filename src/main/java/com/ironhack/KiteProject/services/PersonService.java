@@ -22,6 +22,7 @@ public final class PersonService {
     private PasswordEncoder passwordEncoder;
 
 
+    //todo: asegurarse que NO se repita el username
     public Person createPerson(Person person){
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         return personRepository.save(person);

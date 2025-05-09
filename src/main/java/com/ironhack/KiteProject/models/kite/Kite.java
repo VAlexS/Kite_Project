@@ -32,9 +32,9 @@ public abstract class Kite {
     @NonNull
     private String location; //hace referencia al sitio en el que la persona suele volar la cometa
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "owner")
-    @JsonBackReference //para evitar la redundancia ciclica, ya que la relación es bidireccional
+    //@JsonBackReference //para evitar la redundancia ciclica, ya que la relación es bidireccional
     private Person owner;
 
 }
