@@ -40,7 +40,7 @@ public final class PersonService {
 
 
     public Person updatePerson(String username, Person person){
-        var personToUpdate = personRepository.findById(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Person personToUpdate = personRepository.findById(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         person.setUsername(personToUpdate.getUsername());
 
@@ -48,11 +48,16 @@ public final class PersonService {
     }
 
     public Optional<Person> getByUserName(String username){
-        return personRepository.findById(username);
+        Optional<Person> foundPerson = personRepository.findById(username);
+
+        if (foundPerson.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+        return foundPerson;
     }
 
     public boolean passwordIsValid(Person person, String password) {
-        return passwordEncoder.matches(password, person.getPassword()); // compara el password hardcodeado "1234" con el encriptado "$2a$....."
+        return passwordEncoder.matches(password, person.getPassword()); // compara el password hardcodeado  con el encriptado
     }
 
     public void deletePerson(Person person){

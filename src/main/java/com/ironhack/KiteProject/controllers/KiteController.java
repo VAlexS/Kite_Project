@@ -25,7 +25,7 @@ public class KiteController {
         return ResponseEntity.ok(kiteService.getAllKites(owner, location));
     }
 
-    @GetMapping("/kites/{id}")
+    @GetMapping("/kite/{id}")
     public ResponseEntity<Kite> getKiteById(@PathVariable int id){
         try {
             Kite kite = kiteService.getKiteById(id);

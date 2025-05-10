@@ -2,8 +2,7 @@ package com.ironhack.KiteProject.controllers;
 
 import com.ironhack.KiteProject.models.person.ERole;
 import com.ironhack.KiteProject.models.person.Person;
-import com.ironhack.KiteProject.services.JwtService;
-import com.ironhack.KiteProject.services.PersonService;
+import com.ironhack.KiteProject.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +24,11 @@ public class AuthController {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private KiteService kiteService;
+
+
 
 
     @PostMapping("/login")
