@@ -2,6 +2,7 @@ package com.ironhack.KiteProject.services;
 
 import com.ironhack.KiteProject.models.kite.Kite;
 import com.ironhack.KiteProject.models.kite.LineType;
+import com.ironhack.KiteProject.models.kite.StaticKite;
 import com.ironhack.KiteProject.models.kite.StuntKite;
 import com.ironhack.KiteProject.models.person.Person;
 import org.junit.jupiter.api.DisplayName;
@@ -39,41 +40,32 @@ class KiteServiceTest {
 
         Person ownerKite = personToAssign.get();
 
-        kite1 = new StuntKite();
-        kite1.setWindRequired(24);
-        kite1.setLineType(LineType.DUAL_LINE);
-        kite1.setLocation("Madrid");
+        kite1 = new StuntKite(24, LineType.DUAL_LINE, "Madrid");
         kite1.setOwner(ownerKite);
 
-        kite2 = new StuntKite();
-        kite2.setWindRequired(24);
-        kite2.setLineType(LineType.DUAL_LINE);
-        kite2.setLocation("Caraquiz, Uceda (Guadalajara)");
+        kite2 = new StuntKite(24, LineType.DUAL_LINE, "Caraquiz, Uceda (Guadalajara)");
         kite2.setOwner(ownerKite);
 
-        kite3 = new StuntKite();
-        kite3.setWindRequired(24);
-        kite3.setLineType(LineType.DUAL_LINE);
-        kite3.setLocation("Torrevieja (Alicante)");
+        kite3 = new StuntKite(24, LineType.DUAL_LINE, "Torrevieja (Alicante)");
         kite3.setOwner(ownerKite);
 
 
-
+        Kite savedKite1 = kiteService.saveKite(kite1);
+        Kite savedKite2 =kiteService.saveKite(kite2);
+        Kite savedKite3 = kiteService.saveKite(kite3);
 
         System.out.println("===========================");
         System.out.println("Estas con las cometas que vas a añadir");
-        System.out.println("Cometa 1 = "+kite1);
-        System.out.println("Cometa 2 = "+kite2);
-        System.out.println("Cometa 3 = "+kite3);
+        System.out.println("Cometa 1 = "+savedKite1);
+        System.out.println("Cometa 2 = "+savedKite2);
+        System.out.println("Cometa 3 = "+savedKite3);
         System.out.println("===========================");
 
-        kiteService.saveKite(kite1);
-        kiteService.saveKite(kite2);
-        kiteService.saveKite(kite3);
+
 
     }
 
-    //todo: investigar por qué falla este test
+
     @Test
     @DisplayName("Busco las cometas que tiene hombre_de_la_rae")
     void findKiteByOwner(){
@@ -93,6 +85,35 @@ class KiteServiceTest {
     }
 
     @Test
+    @DisplayName("Asigno 2 cometas a auronplay de distintos tipos que las usará en Madrid")
+    void auronplayAdquire2Kites(){
+        Kite kite1, kite2;
+
+        kite1 = new StuntKite(24, LineType.DUAL_LINE, "Madrid");
+        kite2 = new StaticKite(15, LineType.SINGLE_LINE, "Madrid");
+
+        Optional<Person> foundPerson = personService.getByUserName("auronplay");
+
+        assertTrue(foundPerson.isPresent());
+
+        Person ownerKite = foundPerson.get();
+
+        kite1.setOwner(ownerKite);
+        kite2.setOwner(ownerKite);
+
+        Kite savedKite1 = kiteService.saveKite(kite1);
+        Kite savedKite2 = kiteService.saveKite(kite2);
+
+        System.out.println("===========================");
+        System.out.println("Estas con las cometas que vas a añadir");
+        System.out.println("Cometa 1 = "+savedKite1);
+        System.out.println("Cometa 2 = "+savedKite2);
+        System.out.println("===========================");
+
+
+    }
+
+    @Test
     @DisplayName("Busco todas las cometas que hay en madrid")
     void findKitesByLocation(){
         List<Kite> kitesMadrid = kiteService.getKitesByLocation("Madrid");
@@ -106,11 +127,7 @@ class KiteServiceTest {
     @Test
     @DisplayName("Crear una cometa con un viento requerido fuera de rango")
     void setUpKiteWithImpossibleWindRequired(){
-        Kite kite = new StuntKite();
-        kite.setWindRequired(8);
-        kite.setLineType(LineType.DUAL_LINE);
-        kite.setLocation("Segovia");
-
+        Kite kite = new StuntKite(8, LineType.DUAL_LINE, "Segovia");
         assertThrows(ResponseStatusException.class, () -> kiteService.saveKite(kite));
 
     }
@@ -133,11 +150,7 @@ class KiteServiceTest {
     @Test
     @DisplayName("Crear una cometa sin dueño asignado")
     void saveKiteWithoutOwner(){
-        Kite kite = new StuntKite();
-        kite.setWindRequired(20);
-        kite.setLocation("Burgos");
-        kite.setLineType(LineType.DUAL_LINE);
-
+        Kite kite = new StuntKite(20, LineType.DUAL_LINE, "Burgos");
         kiteService.saveKite(kite);
     }
 
@@ -145,19 +158,22 @@ class KiteServiceTest {
     @Test
     @DisplayName("Asignar a una persona una cometa ya existente")
     void aPersonAdquireKite(){
+
+        final int ID = 6;
+
         Optional<Person> foundPerson = personService.getByUserName("auronplay");
 
         assertTrue(foundPerson.isPresent());
 
         Person person = foundPerson.get();
 
-        Kite kite = kiteService.getKiteById(4);
+        Kite kite = kiteService.getKiteById(ID);
 
         assertNull(kite.getOwner());
 
         kite.setOwner(person);
 
-        kiteService.updateKite(4, kite);
+        kiteService.updateKite(ID, kite);
     }
 
     @Test
