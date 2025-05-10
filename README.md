@@ -6,8 +6,6 @@
 
 1. Aquí tengo definido el UML y sus relaciones correspondientes 
 
-https://www.plantuml.com/plantuml/uml/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80
-
 ```
 @startuml
 abstract class Kite{
@@ -30,11 +28,10 @@ class TractionKite extends Kite {
 }
 
 class Person {
-- dni: String
-- name: String
-- kites: Kite[]
-- role: Role
+- userName: String
 - password: String
+- kites: Kite[]
+- roles: Role[]
   }
 
 enum KiteShape {
@@ -56,10 +53,11 @@ class Role {
 
 Kite "*" o-- "1" Person
 
+Role "*" o-- "*" Person
 @enduml
 ```
 
-![img_9.png](img_9.png)
+![img_19.png](img_19.png)
 
 2. Así es como he creado el proyecto, con estás dependencias
 
@@ -72,11 +70,11 @@ Kite "*" o-- "1" Person
 Estás son las tablas resultantes, cuyas relaciones son estas, como se puede observar, el shape de la tabla kites es una columna
 determinante, también llamada como discriminator value, ya que esta va a determinar el tipo de cometa que tiene la persona:
 
-![img_16.png](img_16.png)
+![img_20.png](img_20.png)
 
-![img_17.png](img_17.png)
+![img_21.png](img_21.png)
 
-![img_18.png](img_18.png)
+![img_22.png](img_22.png)
 
 Como se puede observar en las imágenes, en la tabla kite, hay una columna especial llamada shape, ya que en Java, al haber una clase
 madre (Kite) y varias clases hijas, que hacen referencia a los distintos tipos de cometas. Como aplicamos herencia, he escogido la estrategia
