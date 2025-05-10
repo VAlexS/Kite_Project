@@ -7,7 +7,7 @@ import com.ironhack.KiteProject.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -22,6 +22,7 @@ public final class KiteService {
     @Autowired
     private PersonRepository personRepository;
 
+    //todo:
     public Kite saveKite(Kite kite){
 
         //valido que el viento requerido sea valido
@@ -39,7 +40,22 @@ public final class KiteService {
         return kiteRepository.save(kite);
     }
 
-    public List<Kite> getAllKites(){
+    public List<Kite> getAllKites(String username, String location){
+
+        if (username != null && location != null) {
+            // Buscar cometas por dueño y ubicación simultáneamente
+            System.out.println("mostrando todo");
+            return kiteRepository.findKitesByOwnerAndLocation(username, location);
+        } else if (username != null) {
+            // Filtrar solo por dueño
+            System.out.println("Mostrando solo el dueño");
+            return kiteRepository.findKitesByOwner(username);
+        } else if (location != null) {
+            // Filtrar solo por ubicación
+            System.out.println("mostrando por location");
+            return kiteRepository.findKitesByLocation(location);
+        }
+        // Si no se pasan parámetros, devolver todas las cometas
         return kiteRepository.findAll();
     }
 
@@ -47,6 +63,7 @@ public final class KiteService {
         return kiteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Kite not found"));
     }
 
+    //todo:
     public Kite updateKite(int id, Kite kite){
 
 
@@ -61,14 +78,17 @@ public final class KiteService {
         return kiteRepository.save(kiteToUpdate);
     }
 
+    //todo:
     public List<Kite> getKitesByLocation(String location){
         return kiteRepository.findKitesByLocation(location);
     }
 
+    //todo:
     public List<Kite> getKitesByOwner(String ownerName) {
         return kiteRepository.findKitesByOwner(ownerName);
     }
 
+    //todo:
     public void deleteKite(Kite kite){
 
         var kiteToDelete = kiteRepository.findById(kite.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

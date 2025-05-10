@@ -89,3 +89,31 @@ de una unica tabla con una columna discriminatoria.
 	<version>3.18.1</version>
 </dependency>
 ```
+
+5. Demos con postman
+
+Actualmente, tras realizar varios test, tengo registros en las tablas persons y kites.
+
+Por un lado, en las tablas person tenemos esto:
+
+![img_23.png](img_23.png)
+
+
+Por otro lado, en las tablas kites tenemos esto:
+
+![img_24.png](img_24.png)
+
+Al mostrar las personas, nos lo muestra con sus cometas
+
+![img_25.png](img_25.png)
+
+Por otro lado, al mostrar todas las cometas, simplemente muestro las cometas que hay en la base de datos.
+Ya que de mostrar también a sus dueños, entrariamos en una redundancia ciclica y la salida se haría ilegible.
+
+![img_26.png](img_26.png)
+
+Al obtener una cometa por id, me sale este resultado
+
+![img_27.png](img_27.png)
+
+

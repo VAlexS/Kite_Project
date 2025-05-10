@@ -31,7 +31,7 @@ public class Person {
 
 
     @OneToMany(mappedBy = "owner", fetch = EAGER)
-    @JsonManagedReference
+    //@JsonManagedReference
     private List<Kite> kites = new ArrayList<>();
 
 

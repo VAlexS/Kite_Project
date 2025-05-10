@@ -34,7 +34,7 @@ public abstract class Kite {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "owner")
-    //@JsonBackReference //para evitar la redundancia ciclica, ya que la relación es bidireccional
+    @JsonBackReference //para evitar la redundancia ciclica, ya que la relación es bidireccional
     private Person owner;
 
 }
