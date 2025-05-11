@@ -1,6 +1,8 @@
 package com.ironhack.KiteProject.models.kite;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.ironhack.KiteProject.models.person.Person;
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,6 +15,12 @@ import lombok.*;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "owner")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "shape")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = StaticKite.class, name = "diamond"),
+        @JsonSubTypes.Type(value = StuntKite.class, name = "delta"),
+        @JsonSubTypes.Type(value = TractionKite.class, name = "parafoil")
+})
 public abstract class Kite {
 
     @Id

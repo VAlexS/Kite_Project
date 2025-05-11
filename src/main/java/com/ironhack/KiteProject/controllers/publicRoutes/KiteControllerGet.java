@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/public/")
-public class KiteController {
+public class KiteControllerGet {
 
     @Autowired
     private KiteService kiteService;

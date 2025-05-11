@@ -1,13 +1,13 @@
 package com.ironhack.KiteProject.services;
 
-import com.ironhack.KiteProject.models.kite.Kite;
+import com.ironhack.KiteProject.dto.KiteDTO;
+import com.ironhack.KiteProject.models.kite.*;
 import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.repositories.KiteRepository;
 import com.ironhack.KiteProject.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -63,17 +63,44 @@ public final class KiteService {
         return kiteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Kite not found"));
     }
 
-    //todo:
-    public Kite updateKite(int id, Kite kite){
 
+    //este método lo utilizo en los test
+    public Kite updateKite(int id, Kite kite){
+        System.out.println("Modificando la cometa");
+        Kite kiteToUpdate = kiteRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+
+        Person owner = kiteToUpdate.getOwner();
+
+        Person ownerKiteParam = kite.getOwner();
+
+        if (owner != null && !owner.getUsername().equals(ownerKiteParam.getUsername()))
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+
+        kiteToUpdate.setOwner(kite.getOwner());
+
+        return kiteRepository.save(kiteToUpdate);
+    }
+
+    //este método lo utilizo en el controller
+    public Kite updateKite(int id, KiteDTO kiteDTO){
 
         Kite kiteToUpdate = kiteRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        if (kiteToUpdate.getOwner() != null)
+        final Person OWNER = kiteToUpdate.getOwner();
+        final String OWNER_KITE_DTO = kiteDTO.getUsername();
+
+
+        if (OWNER != null && !OWNER.getUsername().equals(OWNER_KITE_DTO))
             throw new ResponseStatusException(HttpStatus.CONFLICT);
 
-        kiteToUpdate.setOwner(kite.getOwner());
+
+        kiteToUpdate.setWindRequired(kiteDTO.getWindRequired());
+        kiteToUpdate.setLineType(LineType.valueOf(kiteDTO.getLineType()));
+        kiteToUpdate.setLocation(kiteDTO.getLocation());
+
 
         return kiteRepository.save(kiteToUpdate);
     }

@@ -1,6 +1,5 @@
 package com.ironhack.KiteProject.models.person;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ironhack.KiteProject.models.kite.Kite;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,7 +36,6 @@ public class Person {
 
     @ManyToMany(fetch = EAGER) // to load roles when loading the user
     private Collection<Role> roles = new ArrayList<>();
-
 
 
 }

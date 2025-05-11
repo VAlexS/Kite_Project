@@ -58,6 +58,7 @@ public final class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Pasamos al siguiente filtro
         filterChain.doFilter(request, response);
+
     }
 
     private Collection<GrantedAuthority> extractAuthorities(String rolesString) {

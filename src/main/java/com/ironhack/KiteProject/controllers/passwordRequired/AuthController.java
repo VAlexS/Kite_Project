@@ -1,4 +1,4 @@
-package com.ironhack.KiteProject.controllers;
+package com.ironhack.KiteProject.controllers.passwordRequired;
 
 import com.ironhack.KiteProject.models.person.ERole;
 import com.ironhack.KiteProject.models.person.Person;
@@ -29,8 +29,7 @@ public class AuthController {
     private KiteService kiteService;
 
 
-
-
+    //devuelvo una string porque lo que voy a devolver es el token
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Person user) {
         Optional<Person> optionalUser = personService.getByUserName(user.getUsername());
