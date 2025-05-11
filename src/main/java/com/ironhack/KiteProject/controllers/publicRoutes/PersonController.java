@@ -1,6 +1,5 @@
-package com.ironhack.KiteProject.controllers;
+package com.ironhack.KiteProject.controllers.publicRoutes;
 
-import com.ironhack.KiteProject.models.kite.Kite;
 import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
