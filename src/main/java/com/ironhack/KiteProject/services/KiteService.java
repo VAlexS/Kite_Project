@@ -1,6 +1,8 @@
 package com.ironhack.KiteProject.services;
 
 import com.ironhack.KiteProject.dto.KiteDTO;
+import com.ironhack.KiteProject.dto.KiteLocationDTO;
+import com.ironhack.KiteProject.dto.KiteWindRequiredDTO;
 import com.ironhack.KiteProject.models.kite.*;
 import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.repositories.KiteRepository;
@@ -42,20 +44,14 @@ public final class KiteService {
 
     public List<Kite> getAllKites(String username, String location){
 
-        if (username != null && location != null) {
-            // Buscar cometas por dueño y ubicación simultáneamente
-            System.out.println("mostrando todo");
+        if (username != null && location != null)
             return kiteRepository.findKitesByOwnerAndLocation(username, location);
-        } else if (username != null) {
-            // Filtrar solo por dueño
-            System.out.println("Mostrando solo el dueño");
+        else if (username != null)
             return kiteRepository.findKitesByOwner(username);
-        } else if (location != null) {
-            // Filtrar solo por ubicación
-            System.out.println("mostrando por location");
+        else if (location != null)
             return kiteRepository.findKitesByLocation(location);
-        }
-        // Si no se pasan parámetros, devolver todas las cometas
+
+
         return kiteRepository.findAll();
     }
 
@@ -83,7 +79,7 @@ public final class KiteService {
         return kiteRepository.save(kiteToUpdate);
     }
 
-    //este método lo utilizo en el controller
+    //este método lo utilizo en el controller para pasarle todo
     public Kite updateKite(int id, KiteDTO kiteDTO){
 
         Kite kiteToUpdate = kiteRepository.findById(id)
@@ -102,6 +98,22 @@ public final class KiteService {
         kiteToUpdate.setLocation(kiteDTO.getLocation());
 
 
+        return kiteRepository.save(kiteToUpdate);
+    }
+
+    public Kite updateKite(int id, KiteLocationDTO kiteDTO){
+        Kite kiteToUpdate = kiteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        kiteToUpdate.setLocation(kiteDTO.getLocation());
+        return kiteRepository.save(kiteToUpdate);
+    }
+
+    public Kite updateKite(int id, KiteWindRequiredDTO kiteDTO){
+        Kite kiteToUpdate = kiteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        if (kiteDTO.getWindRequired() < 14 || kiteDTO.getWindRequired() > 40)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+        kiteToUpdate.setWindRequired(kiteDTO.getWindRequired());
         return kiteRepository.save(kiteToUpdate);
     }
 

@@ -1,4 +1,4 @@
-package com.ironhack.KiteProject.controllers.passwordRequired;
+package com.ironhack.KiteProject.controllers.tokenRequired;
 
 import com.ironhack.KiteProject.models.person.ERole;
 import com.ironhack.KiteProject.models.person.Person;

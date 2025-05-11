@@ -1,6 +1,8 @@
-package com.ironhack.KiteProject.controllers.passwordRequired;
+package com.ironhack.KiteProject.controllers.tokenRequired;
 
 import com.ironhack.KiteProject.dto.KiteDTO;
+import com.ironhack.KiteProject.dto.KiteLocationDTO;
+import com.ironhack.KiteProject.dto.KiteWindRequiredDTO;
 import com.ironhack.KiteProject.models.kite.Kite;
 import com.ironhack.KiteProject.services.KiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +20,26 @@ public class KiteControllerUpdate {
 
 
 
+    //todo: ver como hacerlo sin un dto, ya que en los put no es necesario
     @PutMapping("/updateAllFields/{id}")
     public ResponseEntity<Kite> updateKite(@PathVariable int id, @RequestBody KiteDTO kite){
         try {
-            Kite updatedKite = kiteService.updateKite(id, kite);
-            return ResponseEntity.ok(updatedKite);
+            return ResponseEntity.ok(kiteService.updateKite(id, kite));
         }catch (ResponseStatusException e){
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .header("Mensaje de error", "Esa cometa ya tenia dueño asignado")
                     .build();
         }
+    }
+
+    @PatchMapping("/updateLocation/{id}")
+    public ResponseEntity<Kite> updateLocationKite(@PathVariable int id, @RequestBody KiteLocationDTO kite){
+        return ResponseEntity.ok(kiteService.updateKite(id, kite));
+    }
+
+    @PatchMapping("/updateWindRequired/{id}")
+    public ResponseEntity<Kite> updateWindRequiredKite(@PathVariable int id, @RequestBody KiteWindRequiredDTO kite){
+        return ResponseEntity.ok(kiteService.updateKite(id, kite));
     }
 
 
