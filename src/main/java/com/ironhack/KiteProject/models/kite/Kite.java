@@ -7,6 +7,7 @@ import com.ironhack.KiteProject.models.person.Person;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -31,15 +32,8 @@ public abstract class Kite {
 
     @Column(name = "wind_required")
     @NonNull
-    @Min(value = 14, message = "El viento mínimo requerido es 14")
-    @Max(value = 40, message = "El viento máximo permitido es 40")
     private int windRequired;
 
-
-    @Enumerated(EnumType.STRING)
-    @NonNull
-    @Column(columnDefinition = "VARCHAR(255)") //me aseguro que me lo genere como varchar, en vez de un enum
-    private LineType lineType;
 
     @NonNull
     private String location; //hace referencia al sitio en el que la persona suele volar la cometa

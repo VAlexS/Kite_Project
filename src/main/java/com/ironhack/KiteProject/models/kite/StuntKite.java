@@ -14,7 +14,7 @@ public final class StuntKite extends Kite {
     public StuntKite() {
     }
 
-    public StuntKite(@NonNull int windRequired, @NonNull LineType lineType, @NonNull String location) {
-        super(windRequired, lineType, location);
+    public StuntKite(@NonNull int windRequired, @NonNull String location) {
+        super(windRequired, location);
     }
 }

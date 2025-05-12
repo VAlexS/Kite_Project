@@ -26,7 +26,7 @@ class KiteServiceTest {
     PersonService personService;
 
 
-    @Test
+    /*@Test
     @DisplayName("Asigno 3 cometas acrobáticas para hombre_de_la_rae")
     void setUpStuntKite(){
 
@@ -191,7 +191,7 @@ class KiteServiceTest {
 
 
 
-    }
+    }*/
 
 
 

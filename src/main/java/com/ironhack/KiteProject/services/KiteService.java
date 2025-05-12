@@ -1,12 +1,9 @@
 package com.ironhack.KiteProject.services;
 
-import com.ironhack.KiteProject.dto.KiteDTO;
-import com.ironhack.KiteProject.dto.KiteLocationDTO;
-import com.ironhack.KiteProject.dto.KiteWindRequiredDTO;
+import com.ironhack.KiteProject.dto.*;
 import com.ironhack.KiteProject.models.kite.*;
 import com.ironhack.KiteProject.models.person.Person;
-import com.ironhack.KiteProject.repositories.KiteRepository;
-import com.ironhack.KiteProject.repositories.PersonRepository;
+import com.ironhack.KiteProject.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -28,12 +25,10 @@ public final class KiteService {
 
     private boolean authorized;
 
-    //todo:
+    //este método es para probarlo en los test
     public Kite saveKite(Kite kite){
 
-        //valido que el viento requerido sea valido
-        /*if (kite.getWindRequired() < 14 || kite.getWindRequired() > 40)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);*/
+
 
         //si esa cometa tiene dueño asignado, valido que exista en la base de datos
         if (kite.getOwner() != null){
@@ -44,6 +39,43 @@ public final class KiteService {
         }
 
         return kiteRepository.save(kite);
+    }
+
+    public Kite saveKite(KiteDTO kiteDTO){
+
+        final String SHAPE = kiteDTO.getShape().toLowerCase();
+
+        final String USERNAME_OWNER = kiteDTO.getUsername();
+
+        Optional<Person> ownerKite = Optional.empty();
+
+        if (USERNAME_OWNER != null){
+            ownerKite = personRepository.findById(USERNAME_OWNER);
+
+            if (ownerKite.isEmpty())
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        Kite kite;
+
+        switch (SHAPE){
+            case "diamond":
+                kite = new StaticKite(kiteDTO.getWindRequired(), kiteDTO.getLocation());
+                break;
+            case "delta":
+                kite = new StuntKite(kiteDTO.getWindRequired(), kiteDTO.getLocation());
+                break;
+            case "parafoil":
+                kite = new TractionKite(kiteDTO.getWindRequired(), kiteDTO.getLocation());
+                break;
+            default:
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if (ownerKite.isPresent())
+            kite.setOwner(ownerKite.get());
+
+        return kiteRepository.save(kite); //aqui es donde me lleva a la excepcion
     }
 
     public List<Kite> getAllKites(String username, String location){
@@ -116,7 +148,6 @@ public final class KiteService {
 
 
         kiteToUpdate.setWindRequired(kiteDTO.getWindRequired());
-        kiteToUpdate.setLineType(LineType.valueOf(kiteDTO.getLineType()));
         kiteToUpdate.setLocation(kiteDTO.getLocation());
 
 
@@ -143,8 +174,7 @@ public final class KiteService {
         if (!authorized)
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No puedes modificar la cometa de otro usuario.");
 
-        /*if (kiteDTO.getWindRequired() < 14 || kiteDTO.getWindRequired() > 40)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);*/
+
 
         kiteToUpdate.setWindRequired(kiteDTO.getWindRequired());
         return kiteRepository.save(kiteToUpdate);

@@ -13,7 +13,7 @@ public final class TractionKite extends Kite {
     public TractionKite() {
     }
 
-    public TractionKite(@NonNull int windLimit, @NonNull LineType lineType, @NonNull String location) {
-        super(windLimit, lineType, location);
+    public TractionKite(@NonNull int windLimit, @NonNull String location) {
+        super(windLimit, location);
     }
 }
