@@ -171,9 +171,32 @@ Y si visualizamos de nuevo la tabla, ya está con los datos actualizados
 
 ![img_42.png](img_42.png)
 
+* Inserciones
+  
+  - Nuevas personas
+    
+    Para crear nuevas personas, requiere que el que lo realice tenga como rol un administrador, para ello, he creado mediante un test
+    un administrador para que me encripte la contraseña del admin. 
+     
+    ![img_44.png](img_44.png)
+  
+   Recordemos que los roles son estos.
+   
+   ![img_45.png](img_45.png)
+   
+   Y la tabla que gestiona los roles es ésta
+   ![img_46.png](img_46.png)
 
+   Cada vez que añada una nueva persona, dependiendo del rol, hay que hacer manualmente en MySQL este insert, el rol_id hace referencia al
+   número que tiene el id del rol en la tabla de roles.
+     ```
+     insert into persons_roles (person_username, roles_id) values (<'userName'>, <rol_id>);
+     ```
 
-
-
-
-
+ Aquí estoy insertando a una nueva persona, le he pasado el token de un administrador
+  
+ ![img_47.png](img_47.png)
+ 
+ Si inserto otra persona, pero sin pasarle el token no me va a dejar, tampoco me va a dejar si le paso el token cuyo rol no es ADMIN
+ ![img_49.png](img_49.png)
+ 

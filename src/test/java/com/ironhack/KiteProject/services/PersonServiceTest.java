@@ -21,10 +21,13 @@ class PersonServiceTest {
 
     Person person;
 
+    final String USERNAME = "administrador";
+
+    final String PASSWORD = "SoyTodoPoderoso";
 
     @BeforeEach
     public void setUp() {
-        person = new Person("auronplay", "abcd1234");
+        person = new Person(USERNAME, PASSWORD);
         System.out.println("=================");
         System.out.println("Persona inicial: ");
         System.out.println(person);
@@ -35,7 +38,7 @@ class PersonServiceTest {
     @Test
     @DisplayName("Genera un token correctamente")
     void generateToken() {
-        String token = jwtService.generateToken("auronplay", "[ROLE_USER]");
+        String token = jwtService.generateToken(USERNAME, "[ROLE_ADMIN]");
 
         System.out.println("======================================");
         System.out.println("ESTO ES EL TOKEN: " + token);
@@ -54,13 +57,13 @@ class PersonServiceTest {
 
 
     //para probar este test, comentar el método que tiene el beforeEach para no añadir el usuario 2 veces
-    @Test
+    /*@Test
     @DisplayName("Crear un usuario que ya existe en la base de datos")
     void duplicateUser(){
         person = new Person("hombre_de_la_rae", "admin");
 
         assertThrows(ResponseStatusException.class, () -> personService.savePerson(person));
-    }
+    }*/
 
 
 

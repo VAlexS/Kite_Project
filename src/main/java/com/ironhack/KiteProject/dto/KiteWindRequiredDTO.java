@@ -1,13 +1,16 @@
 package com.ironhack.KiteProject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class KiteWindRequiredDTO {
 
+    @Min(value = 14, message = "El viento mínimo requerido es 14")
+    @Max(value = 40, message = "El viento máximo permitido es 40")
     private int windRequired;
 }

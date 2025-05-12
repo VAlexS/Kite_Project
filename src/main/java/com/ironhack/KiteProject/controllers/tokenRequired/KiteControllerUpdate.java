@@ -5,6 +5,7 @@ import com.ironhack.KiteProject.dto.KiteLocationDTO;
 import com.ironhack.KiteProject.dto.KiteWindRequiredDTO;
 import com.ironhack.KiteProject.models.kite.Kite;
 import com.ironhack.KiteProject.services.KiteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class KiteControllerUpdate {
 
     //todo: ver como hacerlo sin un dto, ya que en los put no es necesario
     @PutMapping("/updateAllFields/{id}")
-    public ResponseEntity<Kite> updateKite(@PathVariable int id, @RequestBody KiteDTO kite){
+    public ResponseEntity<Kite> updateKite(@PathVariable int id, @RequestBody @Valid KiteDTO kite){
         try {
             return ResponseEntity.ok(kiteService.updateKite(id, kite));
         }catch (ResponseStatusException e){
@@ -33,12 +34,12 @@ public class KiteControllerUpdate {
     }
 
     @PatchMapping("/updateLocation/{id}")
-    public ResponseEntity<Kite> updateLocationKite(@PathVariable int id, @RequestBody KiteLocationDTO kite){
+    public ResponseEntity<Kite> updateLocationKite(@PathVariable int id, @RequestBody @Valid KiteLocationDTO kite){
         return ResponseEntity.ok(kiteService.updateKite(id, kite));
     }
 
     @PatchMapping("/updateWindRequired/{id}")
-    public ResponseEntity<Kite> updateWindRequiredKite(@PathVariable int id, @RequestBody KiteWindRequiredDTO kite){
+    public ResponseEntity<Kite> updateWindRequiredKite(@PathVariable int id, @RequestBody @Valid KiteWindRequiredDTO kite){
         return ResponseEntity.ok(kiteService.updateKite(id, kite));
     }
 

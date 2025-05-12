@@ -1,13 +1,14 @@
 package com.ironhack.KiteProject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class KiteLocationDTO {
 
+    @NotBlank(message = "La ubicación no puede estar vacía")
     private String location;
 }

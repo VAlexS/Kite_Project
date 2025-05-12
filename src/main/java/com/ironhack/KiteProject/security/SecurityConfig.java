@@ -26,7 +26,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/public/**").permitAll()
                         // rutas que requieren que sea admin
-                        .requestMatchers("/api/admin").hasRole("ADMIN")
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         // el resto de rutas requieren autenticación
                         .anyRequest().authenticated()
                 )

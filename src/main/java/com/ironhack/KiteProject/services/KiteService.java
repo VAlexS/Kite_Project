@@ -32,8 +32,8 @@ public final class KiteService {
     public Kite saveKite(Kite kite){
 
         //valido que el viento requerido sea valido
-        if (kite.getWindRequired() < 14 || kite.getWindRequired() > 40)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        /*if (kite.getWindRequired() < 14 || kite.getWindRequired() > 40)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);*/
 
         //si esa cometa tiene dueño asignado, valido que exista en la base de datos
         if (kite.getOwner() != null){
@@ -94,6 +94,7 @@ public final class KiteService {
     }
 
     //este método lo utilizo en el controller para pasarle todo
+    //todo: investigar si es posible hacerlo sin un dto al ser genérico
     public Kite updateKite(int id, KiteDTO kiteDTO){
 
         Kite kiteToUpdate = kiteRepository.findById(id)
@@ -103,7 +104,7 @@ public final class KiteService {
         authorized = isAuthorized(kiteToUpdate);
 
         if (!authorized)
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "No puedes modificar la cometa de otro usuario.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No puedes modificar la cometa de otro usuario.");
 
 
         final Person OWNER = kiteToUpdate.getOwner();
@@ -128,7 +129,7 @@ public final class KiteService {
         authorized = isAuthorized(kiteToUpdate);
 
         if (!authorized)
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "No puedes modificar la cometa de otro usuario.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No puedes modificar la cometa de otro usuario.");
 
         kiteToUpdate.setLocation(kiteDTO.getLocation());
         return kiteRepository.save(kiteToUpdate);
@@ -140,21 +141,21 @@ public final class KiteService {
         authorized = isAuthorized(kiteToUpdate);
 
         if (!authorized)
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "No puedes modificar la cometa de otro usuario.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No puedes modificar la cometa de otro usuario.");
 
-        if (kiteDTO.getWindRequired() < 14 || kiteDTO.getWindRequired() > 40)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        /*if (kiteDTO.getWindRequired() < 14 || kiteDTO.getWindRequired() > 40)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);*/
 
         kiteToUpdate.setWindRequired(kiteDTO.getWindRequired());
         return kiteRepository.save(kiteToUpdate);
     }
 
-    //todo:
+    //este método solo lo utilizo en los test
     public List<Kite> getKitesByLocation(String location){
         return kiteRepository.findKitesByLocation(location);
     }
 
-    //todo:
+    //este método solo lo utilizo en los test
     public List<Kite> getKitesByOwner(String ownerName) {
         return kiteRepository.findKitesByOwner(ownerName);
     }

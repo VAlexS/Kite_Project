@@ -3,6 +3,7 @@ package com.ironhack.KiteProject.controllers.tokenRequired;
 import com.ironhack.KiteProject.models.person.ERole;
 import com.ironhack.KiteProject.models.person.Person;
 import com.ironhack.KiteProject.services.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class AuthController {
 
     //devuelvo una string porque lo que voy a devolver es el token
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Person user) {
+    public ResponseEntity<String> login(@RequestBody @Valid Person user) {
         Optional<Person> optionalUser = personService.getByUserName(user.getUsername());
 
         // miramos que el user existe

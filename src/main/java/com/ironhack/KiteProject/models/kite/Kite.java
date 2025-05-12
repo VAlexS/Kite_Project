@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.ironhack.KiteProject.models.person.Person;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 @Entity
@@ -29,6 +31,8 @@ public abstract class Kite {
 
     @Column(name = "wind_required")
     @NonNull
+    @Min(value = 14, message = "El viento mínimo requerido es 14")
+    @Max(value = 40, message = "El viento máximo permitido es 40")
     private int windRequired;
 
 
