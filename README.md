@@ -10,7 +10,7 @@
 @startuml
 abstract class Kite{
 - id: int
-- windLimit: int
+- windRequired: int
 - shape: KiteShape
 - line: LineType
 - location: String
@@ -57,7 +57,7 @@ Role "*" o-- "*" Person
 @enduml
 ```
 
-![img_19.png](img_19.png)
+![img_43.png](img_43.png)
 
 2. Así es como he creado el proyecto, con estás dependencias
 
