@@ -94,26 +94,86 @@ de una unica tabla con una columna discriminatoria.
 
 Actualmente, tras realizar varios test, tengo registros en las tablas persons y kites.
 
+* Muestreo personas
+
 Por un lado, en las tablas person tenemos esto:
 
 ![img_23.png](img_23.png)
 
+Al mostrar las personas, nos lo muestra con sus cometas y sus roles
+
+![img_25.png](img_25.png)
+
+Lo mismo pasa cuando muestro una persona en particular
+
+![img_28.png](img_28.png)
+
+* Muestreo cometas
 
 Por otro lado, en las tablas kites tenemos esto:
 
-![img_24.png](img_24.png)
+![img_29.png](img_29.png)
 
-Al mostrar las personas, nos lo muestra con sus cometas
-
-![img_25.png](img_25.png)
 
 Por otro lado, al mostrar todas las cometas, simplemente muestro las cometas que hay en la base de datos.
 Ya que de mostrar también a sus dueños, entrariamos en una redundancia ciclica y la salida se haría ilegible.
 
-![img_26.png](img_26.png)
+![img_31.png](img_31.png)
+
+Ese mismo endpoint permite incluir parámetros para realizar búsquedas filtradas. 
+
+ - Búsqueda por dueño
+    
+    ![img_32.png](img_32.png)
+
+ - Búsqueda por ubicación donde se usan
+
+    ![img_33.png](img_33.png)
+
+ - Búsqueda por ambos filtros, tanto dueño como ubicación
+    
+    ![img_34.png](img_34.png)
 
 Al obtener una cometa por id, me sale este resultado
 
-![img_27.png](img_27.png)
+![img_36.png](img_36.png)
+
+* Modificaciones
+
+En una API Rest, hay 2 formas de hacer modificaciones:
+
+ - PUT: Para realizar modificaciones completas, por lo tanto, requiere que el usuario especifique todos los campos, lo que viene a ser
+   un remplazo. Aunque haya campos que se desse mantener los valores, hay que especificarlos también con esos mismos valores.
+
+ - PATCH: Para realizar modificaciones parciales, aquí se garantiza que se puedan modificar ciertas caracteristicas sin especificar 
+   todos los campos.
+
+Las modificaciones de cometas que he implementado de momento han sido parciales, de forma que se pueda modificar o bien el viento requerido
+o bien la ubicación donde se use, garantizando que esa modificación solo la pueda realizar el dueño.
+
+Ahora, hombre_de_la_rae va a intentar modificar el viento requerido y la ubicación del auronplay
+
+![img_37.png](img_37.png)
+
+![img_38.png](img_38.png)
+
+La tabla permanece igual
+
+![img_40.png](img_40.png)
+
+Como se puede observar, no lo permite, ahora voy a hacer lo mismo, pero con el token del dueño correspondiente
+
+![img_39.png](img_39.png)
+
+![img_41.png](img_41.png)
+
+Y si visualizamos de nuevo la tabla, ya está con los datos actualizados
+
+![img_42.png](img_42.png)
+
+
+
+
+
 
 
