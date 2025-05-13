@@ -4,6 +4,9 @@
 
 ### Mi tablero de Trello https://trello.com/b/YTSiRLbZ/kite-project
 
+### Presentación con slides 
+https://www.canva.com/design/DAGnVvLkai8/cfejTn0jg6HY0nOd8G5iuQ/edit?utm_content=DAGnVvLkai8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 1. Aquí tengo definido el UML y sus relaciones correspondientes 
 
 ```
