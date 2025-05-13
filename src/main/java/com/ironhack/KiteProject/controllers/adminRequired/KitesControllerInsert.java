@@ -19,7 +19,7 @@ public class KitesControllerInsert {
     private KiteService kiteService;
 
     @PostMapping("/addKite")
-    public ResponseEntity<Kite> addKite(@Valid @RequestBody KiteDTO kite){
+    public ResponseEntity<Kite> addKite(@Valid @RequestBody KiteDTO kite) {
         return ResponseEntity.ok(kiteService.saveKite(kite));
     }
 }

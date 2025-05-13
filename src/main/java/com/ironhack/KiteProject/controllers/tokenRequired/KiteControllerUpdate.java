@@ -21,7 +21,7 @@ public class KiteControllerUpdate {
 
 
 
-    //todo: ver como hacerlo sin un dto, ya que en los put no es necesario
+
     @PutMapping("/updateAllFields/{id}")
     public ResponseEntity<Kite> updateKite(@PathVariable int id, @RequestBody @Valid KiteDTO kite){
         try {
