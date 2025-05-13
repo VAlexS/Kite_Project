@@ -2,6 +2,7 @@ package com.ironhack.KiteProject.models.person;
 
 import com.ironhack.KiteProject.models.kite.Kite;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -16,25 +17,26 @@ import static jakarta.persistence.FetchType.EAGER;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "password")
-public class Person {
+public final class Person {
 
     @Id
     @NonNull
+    @NotBlank(message = "hay que introducir un username")
     private String username; //el username es unico
 
 
 
 
     @NonNull
+    @NotBlank(message = "tienes que meter una password")
     private String password;
 
 
     @OneToMany(mappedBy = "owner", fetch = EAGER)
-    //@JsonManagedReference
     private List<Kite> kites = new ArrayList<>();
 
 
-    @ManyToMany(fetch = EAGER) // to load roles when loading the user
+    @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
 

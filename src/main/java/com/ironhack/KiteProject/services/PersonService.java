@@ -39,14 +39,6 @@ public final class PersonService {
     }
 
 
-    public Person updatePerson(String username, Person person){
-        Person personToUpdate = personRepository.findById(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        person.setUsername(personToUpdate.getUsername());
-
-        return person;
-    }
-
     public Optional<Person> getByUserName(String username){
         Optional<Person> foundPerson = personRepository.findById(username);
 

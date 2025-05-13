@@ -16,7 +16,7 @@ public interface KiteRepository extends JpaRepository<Kite, Integer> {
     @Query(value = "SELECT * FROM kites WHERE owner = :ownerName", nativeQuery = true)
     List<Kite> findKitesByOwner(@Param("ownerName") String ownerName);
 
-    //@Query("SELECT k FROM Kite k WHERE k.owner.username = :ownerName AND k.location = :location")
+
     @Query("SELECT k FROM Kite k WHERE k.owner.username = :ownerName AND k.location = :location")
     List<Kite> findKitesByOwnerAndLocation(@Param("ownerName") String ownerName, @Param("location") String location);
 

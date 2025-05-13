@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -27,6 +26,7 @@ public class KiteService {
     private boolean authorized;
 
 
+    //utilizo un DTO ya que el owner que manda el usuario es el string del username, no una Person como tal
     public Kite saveKite(KiteDTO kiteDTO){
 
         final String SHAPE = kiteDTO.getShape().toLowerCase();
@@ -61,7 +61,7 @@ public class KiteService {
         if (ownerKite.isPresent())
             kite.setOwner(ownerKite.get());
 
-        return kiteRepository.save(kite); //aqui es donde me lleva a la excepcion
+        return kiteRepository.save(kite);
     }
 
     public List<Kite> getAllKites(String username, String location){
@@ -98,7 +98,7 @@ public class KiteService {
         Kite foundKite = kiteRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        //verifico que esta autorizado a realizar la modificacion
+
         authorized = isAuthorized(foundKite);
 
         if (!authorized)
