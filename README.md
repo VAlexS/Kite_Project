@@ -207,6 +207,14 @@ o bien la ubicación donde se use, garantizando que esa modificación solo la pu
 
 Así como las modificaciones totales, que también requiere que el que lo realice sea el dueño
 
+  - Le modifico la ubicación a una cometa de auronplay
+    
+    ![img_76.png](img_76.png)
+   
+    Así queda la tabla
+   
+    ![img_77.png](img_77.png)
+
 
 
  
