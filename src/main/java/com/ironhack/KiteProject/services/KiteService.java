@@ -45,7 +45,7 @@ public final class KiteService {
 
         final String SHAPE = kiteDTO.getShape().toLowerCase();
 
-        final String USERNAME_OWNER = kiteDTO.getUsername();
+        final String USERNAME_OWNER = kiteDTO.getOwner();
 
         Optional<Person> ownerKite = Optional.empty();
 
@@ -140,7 +140,7 @@ public final class KiteService {
 
 
         final Person OWNER = kiteToUpdate.getOwner();
-        final String OWNER_KITE_DTO = kiteDTO.getUsername();
+        final String OWNER_KITE_DTO = kiteDTO.getOwner();
 
 
         if (OWNER != null && !OWNER.getUsername().equals(OWNER_KITE_DTO))

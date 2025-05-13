@@ -1,20 +1,7 @@
 package com.ironhack.KiteProject.services;
 
-import com.ironhack.KiteProject.models.kite.Kite;
-import com.ironhack.KiteProject.models.kite.LineType;
-import com.ironhack.KiteProject.models.kite.StaticKite;
-import com.ironhack.KiteProject.models.kite.StuntKite;
-import com.ironhack.KiteProject.models.person.Person;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class KiteServiceTest {

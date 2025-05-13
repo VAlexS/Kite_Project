@@ -12,7 +12,6 @@ abstract class Kite{
 - id: int
 - windRequired: int
 - shape: KiteShape
-- line: LineType
 - location: String
 - owner: Person
   }
@@ -38,10 +37,6 @@ enum KiteShape {
 DELTA, DIAMOND, PARAFOIL
 }
 
-enum LineType {
-SINGLE_LINE, DUAL_LINE
-}
-
 enum ERole {
 ADMIN, USER
 }
@@ -57,7 +52,7 @@ Role "*" o-- "*" Person
 @enduml
 ```
 
-![img_43.png](img_43.png)
+![img_50.png](img_50.png)
 
 2. Así es como he creado el proyecto, con estás dependencias
 
@@ -70,11 +65,11 @@ Role "*" o-- "*" Person
 Estás son las tablas resultantes, cuyas relaciones son estas, como se puede observar, el shape de la tabla kites es una columna
 determinante, también llamada como discriminator value, ya que esta va a determinar el tipo de cometa que tiene la persona:
 
-![img_20.png](img_20.png)
+![img_51.png](img_51.png)
 
-![img_21.png](img_21.png)
+![img_52.png](img_52.png)
 
-![img_22.png](img_22.png)
+![img_53.png](img_53.png)
 
 Como se puede observar en las imágenes, en la tabla kite, hay una columna especial llamada shape, ya que en Java, al haber una clase
 madre (Kite) y varias clases hijas, que hacen referencia a los distintos tipos de cometas. Como aplicamos herencia, he escogido la estrategia
@@ -92,87 +87,46 @@ de una unica tabla con una columna discriminatoria.
 
 5. Demos con postman
 
-Actualmente, tras realizar varios test, tengo registros en las tablas persons y kites.
+Inicialmente, tenemos las tablas así
 
-* Muestreo personas
+* Persons
+![img_58.png](img_58.png)
 
-Por un lado, en las tablas person tenemos esto:
+* Kites (he vaciado esta tabla para documentar las demos de los insert)
+![img_55.png](img_55.png)
 
-![img_23.png](img_23.png)
+* Roles (inserto los datos manualmente en MySQL)
+![img_56.png](img_56.png)
 
-Al mostrar las personas, nos lo muestra con sus cometas y sus roles
-
-![img_25.png](img_25.png)
-
-Lo mismo pasa cuando muestro una persona en particular
-
-![img_28.png](img_28.png)
-
-* Muestreo cometas
-
-Por otro lado, en las tablas kites tenemos esto:
-
-![img_29.png](img_29.png)
+* Persons_roles (inserto los datos manualmente en MySQL)
+![img_57.png](img_57.png)
 
 
-Por otro lado, al mostrar todas las cometas, simplemente muestro las cometas que hay en la base de datos.
-Ya que de mostrar también a sus dueños, entrariamos en una redundancia ciclica y la salida se haría ilegible.
-
-![img_31.png](img_31.png)
-
-Ese mismo endpoint permite incluir parámetros para realizar búsquedas filtradas. 
-
- - Búsqueda por dueño
-    
-    ![img_32.png](img_32.png)
-
- - Búsqueda por ubicación donde se usan
-
-    ![img_33.png](img_33.png)
-
- - Búsqueda por ambos filtros, tanto dueño como ubicación
-    
-    ![img_34.png](img_34.png)
-
-Al obtener una cometa por id, me sale este resultado
-
-![img_36.png](img_36.png)
-
-* Modificaciones
-
-En una API Rest, hay 2 formas de hacer modificaciones:
-
- - PUT: Para realizar modificaciones completas, por lo tanto, requiere que el usuario especifique todos los campos, lo que viene a ser
-   un remplazo. Aunque haya campos que se desse mantener los valores, hay que especificarlos también con esos mismos valores.
-
- - PATCH: Para realizar modificaciones parciales, aquí se garantiza que se puedan modificar ciertas caracteristicas sin especificar 
-   todos los campos.
-
-Las modificaciones de cometas que he implementado de momento han sido parciales, de forma que se pueda modificar o bien el viento requerido
-o bien la ubicación donde se use, garantizando que esa modificación solo la pueda realizar el dueño.
-
-Ahora, hombre_de_la_rae va a intentar modificar el viento requerido y la ubicación del auronplay
-
-![img_37.png](img_37.png)
-
-![img_38.png](img_38.png)
-
-La tabla permanece igual
-
-![img_40.png](img_40.png)
-
-Como se puede observar, no lo permite, ahora voy a hacer lo mismo, pero con el token del dueño correspondiente
-
-![img_39.png](img_39.png)
-
-![img_41.png](img_41.png)
-
-Y si visualizamos de nuevo la tabla, ya está con los datos actualizados
-
-![img_42.png](img_42.png)
-
-* Inserciones
   
+#### Inserciones
+  
+  Las inserciones requieren el token de un administrador, de no tener el token de administrador, no va a ejecutar la petición
+
+  - Nuevas cometas
+    
+   Por ejemplo, le asigno a hombre_de_la_rae
+   
+   ![img_63.png](img_63.png)
+   
+   ![img_64.png](img_64.png)
+   
+   ![img_65.png](img_65.png)
+
+   Ahora voy a asignarle 2 cometas a auronplay
+   
+   ![img_66.png](img_66.png)
+
+   ![img_67.png](img_67.png)
+   
+   La tabla resultante de kites que nos queda es esta
+   
+   ![img_68.png](img_68.png)
+
   - Nuevas personas
     
     Para crear nuevas personas, requiere que el que lo realice tenga como rol un administrador, para ello, he creado mediante un test
@@ -199,4 +153,60 @@ Y si visualizamos de nuevo la tabla, ya está con los datos actualizados
  
  Si inserto otra persona, pero sin pasarle el token no me va a dejar, tampoco me va a dejar si le paso el token cuyo rol no es ADMIN
  ![img_49.png](img_49.png)
+
+#### Muestreo
+
+* Muestreo de personas
+  
+  Al mostrar personas, muestra tanto los roles como las cometas que tiene dicha persona
+  
+  - Muestro todas las personas
+     
+     ![img_69.png](img_69.png)
+  
+  - Muestro una persona por username
+     
+    ![img_70.png](img_70.png)
+
+
+* Muestreo de cometas
+   
+   - Muestro todas las cometas
+      
+     ![img_71.png](img_71.png)
+  
+   - Muestro las cometas registradas en Madrid
+     
+      ![img_72.png](img_72.png)
+  
+   - Muestro las cometas que pertenecen a hombre_de_la_rae
+      
+      ![img_73.png](img_73.png)
+  
+   - Muestro las cometas que pertenecen a hombre_de_la_rae y que estén registradas en Madrid
+     
+     ![img_74.png](img_74.png)
+  
+   - Muestro una cometa por id
+      
+     ![img_75.png](img_75.png)
+
+    
+#### Modificaciones
+
+En una API Rest, hay 2 formas de hacer modificaciones:
+
+- PUT: Para realizar modificaciones completas, por lo tanto, requiere que el usuario especifique todos los campos, lo que viene a ser
+  un remplazo. Aunque haya campos que se desse mantener los valores, hay que especificarlos también con esos mismos valores.
+
+- PATCH: Para realizar modificaciones parciales, aquí se garantiza que se puedan modificar ciertas caracteristicas sin especificar
+  todos los campos.
+
+En cuando a modificaciones  parciales, se puede modificar o bien el viento requerido
+o bien la ubicación donde se use, garantizando que esa modificación solo la pueda realizar el dueño.
+
+Así como las modificaciones totales, que también requiere que el que lo realice sea el dueño
+
+
+
  

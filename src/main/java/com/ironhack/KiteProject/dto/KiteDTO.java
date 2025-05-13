@@ -20,7 +20,7 @@ public class KiteDTO {
     @Max(value = 40, message = "El viento máximo permitido es 40")
     private int windRequired;
 
-    private String username;
+    private String owner;
 
     @NotBlank(message = "La ubicación no puede estar vacia")
     private String location;
