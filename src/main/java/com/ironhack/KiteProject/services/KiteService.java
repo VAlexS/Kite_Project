@@ -9,13 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public final class KiteService {
+public class KiteService {
 
     @Autowired
     private KiteRepository kiteRepository;
@@ -98,25 +99,6 @@ public final class KiteService {
     }
 
 
-    //este método lo utilizo en los test
-    public Kite updateKite(int id, Kite kite){
-        System.out.println("Modificando la cometa");
-        Kite kiteToUpdate = kiteRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-
-        Person owner = kiteToUpdate.getOwner();
-
-        Person ownerKiteParam = kite.getOwner();
-
-        if (owner != null && !owner.getUsername().equals(ownerKiteParam.getUsername()))
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
-
-        kiteToUpdate.setOwner(kite.getOwner());
-
-        return kiteRepository.save(kiteToUpdate);
-    }
-
     //sirve para verificar que el que haga la modificación de una cometa sea el dueño.
     private boolean isAuthorized(Kite kiteWithOwner){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -125,33 +107,36 @@ public final class KiteService {
         return kiteWithOwner.getOwner().getUsername().equals(authenticatedUsername);
     }
 
-    //este método lo utilizo en el controller para pasarle todo
-    //todo: investigar si es posible hacerlo sin un dto al ser genérico
-    public Kite updateKite(int id, KiteDTO kiteDTO){
 
-        Kite kiteToUpdate = kiteRepository.findById(id)
+    public Kite updateKite(int id, UpdateKiteDTO kiteDTO){
+
+        Kite foundKite = kiteRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         //verifico que esta autorizado a realizar la modificacion
-        authorized = isAuthorized(kiteToUpdate);
+        authorized = isAuthorized(foundKite);
 
         if (!authorized)
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "No puedes modificar la cometa de otro usuario.");
 
 
-        final Person OWNER = kiteToUpdate.getOwner();
+        final Person OWNER = foundKite.getOwner();
         final String OWNER_KITE_DTO = kiteDTO.getOwner();
 
 
         if (OWNER != null && !OWNER.getUsername().equals(OWNER_KITE_DTO))
             throw new ResponseStatusException(HttpStatus.CONFLICT);
 
+        Optional<Person> foundOwner = personRepository.findById(OWNER_KITE_DTO);
 
-        kiteToUpdate.setWindRequired(kiteDTO.getWindRequired());
-        kiteToUpdate.setLocation(kiteDTO.getLocation());
+        if (foundOwner.isEmpty())
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
+        foundKite.setWindRequired(kiteDTO.getWindRequired());
+        foundKite.setOwner(foundOwner.get());
+        foundKite.setLocation(kiteDTO.getLocation());
 
-        return kiteRepository.save(kiteToUpdate);
+        return kiteRepository.save(foundKite);
     }
 
     public Kite updateKite(int id, KiteLocationDTO kiteDTO){

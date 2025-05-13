@@ -3,6 +3,7 @@ package com.ironhack.KiteProject.controllers.tokenRequired;
 import com.ironhack.KiteProject.dto.KiteDTO;
 import com.ironhack.KiteProject.dto.KiteLocationDTO;
 import com.ironhack.KiteProject.dto.KiteWindRequiredDTO;
+import com.ironhack.KiteProject.dto.UpdateKiteDTO;
 import com.ironhack.KiteProject.models.kite.Kite;
 import com.ironhack.KiteProject.services.KiteService;
 import jakarta.validation.Valid;
@@ -23,7 +24,7 @@ public class KiteControllerUpdate {
 
 
     @PutMapping("/updateAllFields/{id}")
-    public ResponseEntity<Kite> updateKite(@PathVariable int id, @RequestBody @Valid KiteDTO kite){
+    public ResponseEntity<Kite> updateKite(@PathVariable int id, @RequestBody @Valid UpdateKiteDTO kite){
         try {
             return ResponseEntity.ok(kiteService.updateKite(id, kite));
         }catch (ResponseStatusException e){

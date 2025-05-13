@@ -1,18 +1,16 @@
 package com.ironhack.KiteProject.dto;
 
 import jakarta.validation.constraints.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class KiteDTO {
-
-    @NotBlank(message = "La forma para identificar el tipo no puede estar vacía")
-    @Pattern(regexp = "diamond|delta|parafoil", message = "El tipo de forma debe ser 'diamond', 'delta' o 'parafoil'")
-    private String shape;
-
+public class UpdateKiteDTO {
 
     @NotNull(message = "El viento requerido no puede estar vacio")
     @Min(value = 14, message = "El viento mínimo requerido es 14")
@@ -24,7 +22,4 @@ public class KiteDTO {
 
     @NotBlank(message = "La ubicación no puede estar vacia")
     private String location;
-
-
-
 }

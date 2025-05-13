@@ -223,6 +223,10 @@ Así como las modificaciones totales, que también requiere que el que lo realic
     Así queda la tabla
     
     ![img_79.png](img_79.png)
+ 
+   - Ahora, pruebo a hacer un remplazo total. 
+     
+     ![img_80.png](img_80.png)
 
 
 
