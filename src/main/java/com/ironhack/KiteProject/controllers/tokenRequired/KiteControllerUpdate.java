@@ -40,7 +40,10 @@ public class KiteControllerUpdate {
 
     @PatchMapping("/updateWindRequired/{id}")
     public ResponseEntity<Kite> updateWindRequiredKite(@PathVariable int id, @RequestBody @Valid KiteWindRequiredDTO kite){
-        return ResponseEntity.ok(kiteService.updateKite(id, kite));
+        System.out.println("Modificando el viento requerido...");
+        Kite updatedKite = kiteService.updateKite(id, kite);
+        System.out.println("Viento requerido modificado");
+        return ResponseEntity.ok(updatedKite);
     }
 
 

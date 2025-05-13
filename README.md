@@ -216,5 +216,14 @@ Así como las modificaciones totales, que también requiere que el que lo realic
     ![img_77.png](img_77.png)
 
 
+  - Ahora, le modifico el viento requerido
+    
+    ![img_78.png](img_78.png)
+
+    Así queda la tabla
+    
+    ![img_79.png](img_79.png)
+
+
 
  
