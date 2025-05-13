@@ -26,21 +26,6 @@ public class KiteService {
 
     private boolean authorized;
 
-    //este método es para probarlo en los test
-    public Kite saveKite(Kite kite){
-
-
-
-        //si esa cometa tiene dueño asignado, valido que exista en la base de datos
-        if (kite.getOwner() != null){
-            Optional<Person> ownerKite = personRepository.findById(kite.getOwner().getUsername());
-
-            if (ownerKite.isEmpty())
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        return kiteRepository.save(kite);
-    }
 
     public Kite saveKite(KiteDTO kiteDTO){
 
@@ -165,20 +150,10 @@ public class KiteService {
         return kiteRepository.save(kiteToUpdate);
     }
 
-    //este método solo lo utilizo en los test
-    public List<Kite> getKitesByLocation(String location){
-        return kiteRepository.findKitesByLocation(location);
-    }
 
-    //este método solo lo utilizo en los test
-    public List<Kite> getKitesByOwner(String ownerName) {
-        return kiteRepository.findKitesByOwner(ownerName);
-    }
+    public void deleteKite(int id){
 
-    //todo:
-    public void deleteKite(Kite kite){
-
-        var kiteToDelete = kiteRepository.findById(kite.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        var kiteToDelete = kiteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         kiteRepository.delete(kiteToDelete);
     }

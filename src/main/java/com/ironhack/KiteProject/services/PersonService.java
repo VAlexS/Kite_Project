@@ -60,8 +60,10 @@ public final class PersonService {
         return passwordEncoder.matches(password, person.getPassword()); // compara el password hardcodeado  con el encriptado
     }
 
-    public void deletePerson(Person person){
-        personRepository.delete(person);
+    public void deletePerson(String username){
+        var personToDelete = personRepository.findById(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        personRepository.delete(personToDelete);
     }
 
 

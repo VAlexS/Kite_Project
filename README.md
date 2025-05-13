@@ -228,6 +228,51 @@ Así como las modificaciones totales, que también requiere que el que lo realic
      
      ![img_80.png](img_80.png)
 
+     Así quedaría la tabla
+     
+     ![img_81.png](img_81.png)
+
+
+#### Eliminaciones
+
+ Partimos de las tablas así, por un lado, tenemos la tabla con las cometas. Estos endpoints requiere que lo realice un admin.
+ 
+  ![img_82.png](img_82.png)
+
+ Y por otro lado, tenemos la tabla con las personas
+  
+  ![img_83.png](img_83.png)
+  
+  * Eliminación de cometas
+
+ Vamos a eliminar las 2 cometas que tiene auronplay, 
+  
+   ![img_84.png](img_84.png)
+   
+   ![img_85.png](img_85.png)
+
+ La tabla quedaría así
+  
+  ![img_86.png](img_86.png)
+
+  * Eliminación de personas
+    
+    Inicialmente, la tabla personas están así
+     
+     ![img_87.png](img_87.png)
+   
+    Voy a probar a eliminar a auronplay
+    
+     ![img_88.png](img_88.png)
+
+    Finalmente, la tabla de personas quedaría así
+     
+    ![img_89.png](img_89.png)
+
+
+   
+   
+
 
 
  
