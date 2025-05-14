@@ -1,4 +1,4 @@
-package com.ironhack.KiteProject.dto.kite;
+package com.ironhack.KiteProject.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
