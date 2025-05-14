@@ -1,5 +1,6 @@
 package com.ironhack.KiteProject.models.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ironhack.KiteProject.models.kite.Kite;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -29,6 +30,7 @@ public final class Person {
 
     @NonNull
     @NotBlank(message = "tienes que meter una password")
+    @JsonIgnore //con este anotador, indico que no aparezca en el postman a la hora de mostrarlo al cliente
     private String password;
 
 

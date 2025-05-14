@@ -1,4 +1,4 @@
-package com.ironhack.KiteProject.dto;
+package com.ironhack.KiteProject.dto.kite;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

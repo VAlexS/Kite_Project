@@ -1,9 +1,8 @@
 package com.ironhack.KiteProject.controllers.tokenRequired;
 
-import com.ironhack.KiteProject.dto.KiteDTO;
-import com.ironhack.KiteProject.dto.KiteLocationDTO;
-import com.ironhack.KiteProject.dto.KiteWindRequiredDTO;
-import com.ironhack.KiteProject.dto.UpdateKiteDTO;
+import com.ironhack.KiteProject.dto.kite.KiteLocationDTO;
+import com.ironhack.KiteProject.dto.kite.KiteWindRequiredDTO;
+import com.ironhack.KiteProject.dto.kite.UpdateKiteDTO;
 import com.ironhack.KiteProject.models.kite.Kite;
 import com.ironhack.KiteProject.services.KiteService;
 import jakarta.validation.Valid;

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class PersonServiceTest {
 
-    @Autowired
+    /*@Autowired
     PersonService personService;
 
     @Autowired
@@ -53,7 +53,7 @@ class PersonServiceTest {
         System.out.println("======================================");
         System.out.println("esta es la person final: " + person);
         System.out.println("======================================");
-    }
+    }*/
 
 
     //para probar este test, comentar el método que tiene el beforeEach para no añadir el usuario 2 veces

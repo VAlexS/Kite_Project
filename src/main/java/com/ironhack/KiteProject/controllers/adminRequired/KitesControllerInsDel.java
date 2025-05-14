@@ -1,6 +1,6 @@
 package com.ironhack.KiteProject.controllers.adminRequired;
 
-import com.ironhack.KiteProject.dto.KiteDTO;
+import com.ironhack.KiteProject.dto.kite.KiteDTO;
 import com.ironhack.KiteProject.models.kite.Kite;
 import com.ironhack.KiteProject.services.KiteService;
 import jakarta.validation.Valid;
